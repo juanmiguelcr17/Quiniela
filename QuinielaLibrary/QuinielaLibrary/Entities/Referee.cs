@@ -2,7 +2,7 @@
 
 namespace QuinielaLibrary.Entities
 {
-    public class Player : Person
+    public class Referee : Person
     {
         public override Guid Id
         {
@@ -10,7 +10,6 @@ namespace QuinielaLibrary.Entities
             {
                 return base.Id;
             }
-
             set
             {
                 base.Id = value;
@@ -22,7 +21,6 @@ namespace QuinielaLibrary.Entities
             {
                 return base.Name;
             }
-
             set
             {
                 base.Name = value;
@@ -34,7 +32,6 @@ namespace QuinielaLibrary.Entities
             {
                 return base.LastName;
             }
-
             set
             {
                 base.LastName = value;
@@ -46,7 +43,6 @@ namespace QuinielaLibrary.Entities
             {
                 return base.BirthDate;
             }
-
             set
             {
                 base.BirthDate = value;
@@ -58,12 +54,10 @@ namespace QuinielaLibrary.Entities
             {
                 return base.Nationality;
             }
-
             set
             {
                 base.Nationality = value;
             }
         }
-        public QuinielaLibrary.Catalogs.Enumerations.Posicion Position { get; set; }
     }
 }

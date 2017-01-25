@@ -44,11 +44,14 @@
   <ItemGroup>
     <Compile Include="Catalogs\Enumerations.cs" />
     <Compile Include="Catalogs\Score.cs" />
+    <Compile Include="Entities\Referee.cs" />
     <Compile Include="Entities\Team.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Entities\Game.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\Coach.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\Week.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

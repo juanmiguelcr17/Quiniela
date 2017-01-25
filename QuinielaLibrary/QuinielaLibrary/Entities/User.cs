@@ -2,7 +2,8 @@
 
 namespace QuinielaLibrary.Entities
 {
-    public class Player : Person
+    // EL CONTROL DE USUARIOS DEBE IR EN OTRA LIBRERIA
+    public class User : Person
     {
         public override Guid Id
         {
@@ -10,7 +11,6 @@ namespace QuinielaLibrary.Entities
             {
                 return base.Id;
             }
-
             set
             {
                 base.Id = value;
@@ -22,7 +22,6 @@ namespace QuinielaLibrary.Entities
             {
                 return base.Name;
             }
-
             set
             {
                 base.Name = value;
@@ -34,36 +33,12 @@ namespace QuinielaLibrary.Entities
             {
                 return base.LastName;
             }
-
             set
             {
                 base.LastName = value;
             }
         }
-        public override DateTime BirthDate
-        {
-            get
-            {
-                return base.BirthDate;
-            }
-
-            set
-            {
-                base.BirthDate = value;
-            }
-        }
-        public override string Nationality
-        {
-            get
-            {
-                return base.Nationality;
-            }
-
-            set
-            {
-                base.Nationality = value;
-            }
-        }
-        public QuinielaLibrary.Catalogs.Enumerations.Posicion Position { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
     }
 }

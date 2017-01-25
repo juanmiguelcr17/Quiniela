@@ -4,7 +4,7 @@ namespace QuinielaLibrary.Entities
 {
     public class Coach : Person
     {
-        public override int Id
+        public override Guid Id
         {
             get
             {
@@ -28,28 +28,16 @@ namespace QuinielaLibrary.Entities
                 base.Name = value;
             }
         }
-        public override string LastNameP
+        public override string LastName
         {
             get
             {
-                return base.LastNameP;
+                return base.LastName;
             }
 
             set
             {
-                base.LastNameP = value;
-            }
-        }
-        public override string LastNameM
-        {
-            get
-            {
-                return base.LastNameM;
-            }
-
-            set
-            {
-                base.LastNameM = value;
+                base.LastName = value;
             }
         }
         public override DateTime BirthDate
@@ -64,16 +52,16 @@ namespace QuinielaLibrary.Entities
                 base.BirthDate = value;
             }
         }
-        public override string Nation
+        public override string Nationality
         {
             get
             {
-                return base.Nation;
+                return base.Nationality;
             }
 
             set
             {
-                base.Nation = value;
+                base.Nationality = value;
             }
         }
     }
