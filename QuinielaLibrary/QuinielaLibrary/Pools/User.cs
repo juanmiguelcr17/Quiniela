@@ -1,6 +1,7 @@
-﻿using System;
+﻿using QuinielaLibrary.Entities;
+using System;
 
-namespace QuinielaLibrary.Entities
+namespace QuinielaLibrary.Pools
 {
     // EL CONTROL DE USUARIOS DEBE IR EN OTRA LIBRERIA
     public class User : Person
