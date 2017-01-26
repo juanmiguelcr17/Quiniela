@@ -4,7 +4,7 @@ namespace QuinielaLibrary.Catalogs
 {
     public class Enumerations
     {
-        public enum Posicion
+        public enum Position
         {
             Delantero,
             Mediocampista,
