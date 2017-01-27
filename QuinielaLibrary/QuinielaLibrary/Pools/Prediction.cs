@@ -12,6 +12,7 @@ namespace QuinielaLibrary.Pools
         public Guid Id { get; set; }
         public User User { get; set; }
         public Group Group { get; set; }
-        public Pool Pool { get; set; }
+        public Pool PoolPredicted { get; set; }
+        public List<GamePrediction> Predictions { get; set; }
     }
 }

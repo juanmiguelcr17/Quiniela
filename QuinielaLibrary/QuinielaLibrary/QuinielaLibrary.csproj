@@ -47,6 +47,7 @@
     <Compile Include="Catalogs\Score.cs" />
     <Compile Include="Entities\League.cs" />
     <Compile Include="Entities\Season.cs" />
+    <Compile Include="Pools\GamePrediction.cs" />
     <Compile Include="Pools\Group.cs" />
     <Compile Include="Pools\Pool.cs" />
     <Compile Include="Pools\Prediction.cs" />

@@ -11,5 +11,12 @@ namespace QuinielaLibrary.Catalogs
             Defensa,
             Arquero
         }
+        public enum Result
+        {
+            NA,
+            Local,
+            Empate,
+            Vistante
+        }
     }
 }

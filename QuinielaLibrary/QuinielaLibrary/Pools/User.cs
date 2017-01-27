@@ -1,5 +1,6 @@
 ﻿using QuinielaLibrary.Entities;
 using System;
+using System.Drawing;
 
 namespace QuinielaLibrary.Pools
 {
@@ -39,6 +40,7 @@ namespace QuinielaLibrary.Pools
                 base.LastName = value;
             }
         }
+        public Image Photo { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
     }

@@ -20,7 +20,7 @@ namespace QuinielaLibrary.Entities
         public Team()
         {
         }
-        public Team(Guid id, string shortname, string name, string abbreviation,Image shield, Color color, string stadium,string city, string state,List<Player>players=null, Coach coach=null)
+        public Team(Guid id, string shortname, string name, string abbreviation, string stadium, string city, string state, Color color, Image shield = null, List<Player> players = null, Coach coach = null)
         {
             this.Id = id;
             this.ShortName = shortname;
@@ -28,6 +28,20 @@ namespace QuinielaLibrary.Entities
             this.Abbreviation = abbreviation;
             this.Shield = shield;
             this.Color = color;
+            this.Stadium = stadium;
+            this.City = city;
+            this.State = state;
+            this.Players = players;
+            this.Coach = coach;
+        }
+        public Team(Guid id, string shortname, string name, string abbreviation, string stadium, string city, string state, int color, Image shield = null, List<Player> players = null, Coach coach = null)
+        {
+            this.Id = id;
+            this.ShortName = shortname;
+            this.Name = name;
+            this.Abbreviation = abbreviation;
+            this.Shield = shield;
+            this.Color = Color.FromArgb(color);
             this.Stadium = stadium;
             this.City = city;
             this.State = state;

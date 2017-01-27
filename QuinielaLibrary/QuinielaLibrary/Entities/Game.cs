@@ -16,6 +16,21 @@ namespace QuinielaLibrary.Entities
         public DateTime Date { get; set; }
 
         public Referee Referee { get; set; }
-        
+
+        public QuinielaLibrary.Catalogs.Enumerations.Result Result { get; set; }
+
+        public Game()
+        {
+        }
+
+        public Game(Guid id, Team local, Team visitor, DateTime date, Score score=null, Referee referee=null)
+        {
+            this.Id = id;
+            this.Local = local;
+            this.Visitor = visitor;
+            this.Date = date;
+            this.Score = score;
+            this.Referee = referee;
+        }
     }
 }
