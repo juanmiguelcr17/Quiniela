@@ -25,7 +25,7 @@ namespace QuinielaTest
         public Pool Quiniela1 { get; set; }
         public Prediction Prediccion1 { get; set; }
         public int aciertos { get; set; }
-
+        
         [TestMethod]
         public void crearLiga()
         {
@@ -76,14 +76,18 @@ namespace QuinielaTest
         [TestMethod]
         public void SetResultsOfWeek()
         {
-            semana1.Games.ElementAt(0).Result = QuinielaLibrary.Catalogs.Enumerations.Result.Local;
-            semana1.Games.ElementAt(1).Result = QuinielaLibrary.Catalogs.Enumerations.Result.Local;
-            semana1.Games.ElementAt(2).Result = QuinielaLibrary.Catalogs.Enumerations.Result.Empate;
-            semana1.Games.ElementAt(3).Result = QuinielaLibrary.Catalogs.Enumerations.Result.Local;
-            semana1.Games.ElementAt(4).Result = QuinielaLibrary.Catalogs.Enumerations.Result.Vistante;
-            semana1.Games.ElementAt(5).Result = QuinielaLibrary.Catalogs.Enumerations.Result.Local;
-            semana1.Games.ElementAt(6).Result = QuinielaLibrary.Catalogs.Enumerations.Result.Local;
-            semana1.Games.ElementAt(7).Result = QuinielaLibrary.Catalogs.Enumerations.Result.Vistante;
+            Dictionary<Guid, QuinielaLibrary.Catalogs.Enumerations.Result> Results = new Dictionary<Guid, QuinielaLibrary.Catalogs.Enumerations.Result>();
+            
+            Results.Add(semana1.Games.ElementAt(0).Id, QuinielaLibrary.Catalogs.Enumerations.Result.Local);
+            Results.Add(semana1.Games.ElementAt(1).Id, QuinielaLibrary.Catalogs.Enumerations.Result.Local);
+            Results.Add(semana1.Games.ElementAt(2).Id, QuinielaLibrary.Catalogs.Enumerations.Result.Empate);
+            Results.Add(semana1.Games.ElementAt(3).Id, QuinielaLibrary.Catalogs.Enumerations.Result.Local);
+            Results.Add(semana1.Games.ElementAt(4).Id, QuinielaLibrary.Catalogs.Enumerations.Result.Visitante);
+            Results.Add(semana1.Games.ElementAt(5).Id, QuinielaLibrary.Catalogs.Enumerations.Result.Local);
+            Results.Add(semana1.Games.ElementAt(6).Id, QuinielaLibrary.Catalogs.Enumerations.Result.Local);
+            Results.Add(semana1.Games.ElementAt(7).Id, QuinielaLibrary.Catalogs.Enumerations.Result.Visitante);
+
+            act.SetResultsOfWeek(semana1.Games, Results);
         }
         [TestMethod]
         public void VerifyResults()

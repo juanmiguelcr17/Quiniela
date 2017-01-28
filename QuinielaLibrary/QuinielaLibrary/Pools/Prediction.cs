@@ -13,6 +13,7 @@ namespace QuinielaLibrary.Pools
         public User User { get; set; }
         public Group Group { get; set; }
         public Pool PoolPredicted { get; set; }
+        public int Hits { get; set; }
         public List<GamePrediction> Predictions { get; set; }
     }
 }

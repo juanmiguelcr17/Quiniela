@@ -16,7 +16,7 @@ namespace QuinielaLibrary.Catalogs
             NA,
             Local,
             Empate,
-            Vistante
+            Visitante
         }
     }
 }
