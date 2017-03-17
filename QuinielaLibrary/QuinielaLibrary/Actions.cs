@@ -10,59 +10,59 @@ namespace QuinielaLibrary
 {
     public class Actions
     {
-        public Player CreatePlayer(Guid id,string name, string lastName, DateTime birthDate, string nationality, Enumerations.Position position)
+        public Player CreatePlayer(Guid Id, string Name, string LastName, DateTime BirthDate, string Nationality, Enumerations.Position Position)
         {
-            return new Player(id, name, lastName, birthDate, nationality, position);
+            return new Player(Id, Name, LastName, BirthDate, Nationality, Position);
         }
         
-        public Coach CreateCoach(Guid id, string name, string lastname, DateTime birthdate, string nationality)
+        public Coach CreateCoach(Guid Id, string Name, string LastName, DateTime BirthDate, string Nationality)
         {
-            return new Coach(id, name, lastname, birthdate, nationality);
+            return new Coach(Id, Name, LastName, BirthDate, Nationality);
         }
         
-        public Referee CreateReferee(Guid id, string name, string lastname, DateTime birthdate, string nationality)
+        public Referee CreateReferee(Guid Id, string Name, string LastName, DateTime BirthDate, string Nationality)
         {
-            return new Referee(id, name, lastname, birthdate, nationality);
+            return new Referee(Id, Name, LastName, BirthDate, Nationality);
         }
 
-        public Team CreateTeam(Guid id, string shortname, string name, string abbreviation, string stadium, string city, string state, Color color, Image shield = null, List<Player> players = null, Coach coach = null)
+        public Team CreateTeam(Guid Id, string ShortName, string Name, string Abbreviation, string Stadium, string City, string State, Color Color, Image Shield = null, List<Player> Players = null, Coach Coach = null)
         {
-            return new Team(id,shortname,name,abbreviation,stadium, city,state,color,shield,players,coach);
+            return new Team(Id, ShortName, Name, Abbreviation, Stadium, City, State, Color, Shield, Players, Coach);
         }
         
-        public League CreateLeague(Guid id, string name, string country)
+        public League CreateLeague(Guid Id, string Name, string Country)
         {
-            return new League(id, name, country);
+            return new League(Id, Name, Country);
         }
         
-        public Week CreateWeek(Guid id, int number, List<Game> games = null)
+        public Week CreateWeek(Guid Id, int Number, List<Game> Games = null)
         {
-            return new Week(id, number, games);
+            return new Week(Id, Number, Games);
         }
         
-        public Game CreateGame(Guid id, Team local, Team visitor, DateTime date, Score score = null, Referee referee = null)
+        public Game CreateGame(Guid Id, Team Local, Team Visitor, DateTime Date, Score Score = null, Referee Referee = null)
         {
-            return new Game(id, local, visitor, date, score, referee);
+            return new Game(Id, Local, Visitor, Date, Score, Referee);
         }
 
-        public Season CreateSeason(Guid id, string name, DateTime year, DateTime starts, DateTime ends, League league, int weeks, List<Team> teams = null)
+        public Season CreateSeason(Guid Id, string Name, DateTime Year, DateTime Starts, DateTime Ends, League League, int Weeks, List<Team> Teams = null)
         {
-            return new Season(id, name, year, starts, ends, league, weeks, teams);
+            return new Season(Id, Name, Year, Starts, Ends, League, Weeks, Teams);
         }
 
-        public void AddTeam(Team team, Season season)
+        public void AddTeam(Team Team, Season Season)
         {
-            season.Teams.Add(team);
+            Season.Teams.Add(Team);
         }
 
-        public void AddTeams(List<Team> teams, Season season)
+        public void AddTeams(List<Team> Teams, Season Season)
         {
-            season.Teams = teams;
+            Season.Teams = Teams;
         }
 
-        public Pool CreatePool(Guid id, DateTime date, DateTime maxDateFill, List<Game> games)
+        public Pool CreatePool(Guid Id, DateTime Date, DateTime MaxDateFill, List<Game> Games)
         {
-            return new Pool(id, date, maxDateFill, games);
+            return new Pool(Id, Date, MaxDateFill, Games);
         }
 
         public void SetResultsOfWeek(List<Game> Games, Dictionary<Guid, Enumerations.Result> Results)

@@ -72,7 +72,7 @@ namespace QuinielaTestConsoleApp
             User1.Id = Guid.NewGuid();
             User1.Name = names[rdm.Next(0, names.Count() - 1)];
             User1.LastName = string.Format("{0} {1}", LastNames[rdm.Next(0, LastNames.Count() - 1)], LastNames[rdm.Next(0, LastNames.Count() - 1)]);
-            User1.Email = string.Format("{0}{1}@gmail.com", User1.Name.ToLower(), User1.LastName.ToLower().Trim().Replace(" ",""));
+            User1.Email = string.Format("{0}{1}@testgmail.com", User1.Name.ToLower(), User1.LastName.ToLower().Trim().Replace(" ",""));
             Grupo1.Members.Add(User1);
         }
         internal void CrearGrupo()
@@ -96,7 +96,7 @@ namespace QuinielaTestConsoleApp
             foreach (var game in Quiniela1.Games)
             {
                 var res = QuinielaLibrary.Catalogs.Enumerations.Result.NA;
-            neww:
+            newOne:
                 switch (rdm.Next(0,4))
                 {
                     case 1:
@@ -112,7 +112,7 @@ namespace QuinielaTestConsoleApp
                     Prediccion1.Predictions.Add(new GamePrediction(game, res));
                     break;
                     default:
-                    goto neww;
+                    goto newOne;
                 }
                 
             }

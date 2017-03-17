@@ -9,6 +9,7 @@ namespace QuinielaLibrary.Pools
     {
         public Guid Id { get; set; }
         public Group Group { get; set; }
+        public Guid GroupId { get; set; }
         public List<UserHits> UsersHits { get; set; }
     }
 }

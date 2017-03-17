@@ -6,6 +6,7 @@ namespace QuinielaLibrary.Entities
     public class Season
     {
         public Guid Id { get; set; }
+        public Guid LeagueId { get; set; }
         public League League { get; set; }
         public List<Team> Teams { get; set; }
         public DateTime Year { get; set; }

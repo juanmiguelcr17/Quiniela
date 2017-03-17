@@ -16,7 +16,9 @@ namespace QuinielaLibrary.Entities
         public string City { get; set; }
         public string State { get; set; }
         public List<Player> Players { get; set; }
+        public Guid CoachId { get; set; }
         public Coach Coach { get; set; }
+        
         public Team()
         {
         }

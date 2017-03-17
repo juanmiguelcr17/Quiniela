@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuinielaLibrary.Pools;
+using System;
 using System.IO;
 using UtilsLibrary.Serialization;
 
@@ -34,7 +35,7 @@ namespace QuinielaTestConsoleApp
             for (int i = 1; i < 5; i++)
             {
                 string file = string.Format(@"{0}\{1}.{2}", System.Configuration.ConfigurationManager.AppSettings["Path"], string.Format("{0}{1}","Pred",i.ToString()), "json");
-                test.Prediccion1 = rd.DeserializarJSON<QuinielaLibrary.Pools.Prediction>(rd.GetJsonFromFile<QuinielaLibrary.Pools.Prediction>(file));
+                test.Prediccion1 = rd.DeserializarJSON<Prediction>(rd.GetJsonFromFile<Prediction>(file));
                 test.VerifyResults();
                 test.AddPredictionToList();
                 writeToFile(string.Format("{0}{1}", "Pred", i.ToString()), serialize(test.Prediccion1));

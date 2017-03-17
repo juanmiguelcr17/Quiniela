@@ -7,6 +7,7 @@ namespace QuinielaLibrary.Entities
     {
         public Guid Id { get; set; }
         public int Number { get; set; }
+        public Guid SeasonId { get; set; }
         public Season Season { get; set; }
         public List<Game> Games { get; set; }
         public Week()
