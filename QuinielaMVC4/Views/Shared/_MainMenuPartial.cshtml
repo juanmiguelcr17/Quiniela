@@ -1,0 +1,13 @@
+﻿@if (Request.IsAuthenticated) {
+        <ul id="navlist">
+            <li class="first">
+                @Html.ActionLink("Nueva Quiniela", "Create", "Pool")
+            </li>
+            <li>
+                @Html.ActionLink("Modificar Quiniela", "Edit", "Pool")
+            </li>
+            <li>
+                @Html.ActionLink("Clasificación", "Classification", "Pool")
+            </li>
+       </ul>
+}
