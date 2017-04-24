@@ -42,6 +42,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -112,6 +113,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Pools\Classification.cs" />
+    <Compile Include="Models\Pools\GamePrediction.cs" />
+    <Compile Include="Models\Pools\GeneralClassification.cs" />
+    <Compile Include="Models\Pools\Group.cs" />
+    <Compile Include="Models\Pools\GroupPrediction.cs" />
+    <Compile Include="Models\Pools\Pool.cs" />
+    <Compile Include="Models\Pools\Prediction.cs" />
+    <Compile Include="Models\Pools\User.cs" />
+    <Compile Include="Models\Pools\UserHits.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -151,7 +162,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
