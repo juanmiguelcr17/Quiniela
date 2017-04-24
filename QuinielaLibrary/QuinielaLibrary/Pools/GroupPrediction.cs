@@ -5,8 +5,8 @@ namespace QuinielaLibrary.Pools
 {
     public class GroupPrediction
     {
-        public Guid GroupId { get; set; }
-        public Group Group { get; set; }
-        public List<Prediction> Predictions { get; set; }
+        public virtual Guid GroupId { get; set; }
+        public virtual Group Group { get; set; }
+        public virtual List<Prediction> Predictions { get; set; }
     }
 }

@@ -5,16 +5,9 @@ namespace QuinielaLibrary.Pools
 {
     public class GamePrediction
     {
-        public Guid GameId { get; set; }
-        public Game Game { get; set; }
-        public QuinielaLibrary.Catalogs.Enumerations.Result Result { get; set; }
-        public GamePrediction()
-        {
-        }
-        public GamePrediction(Game game, QuinielaLibrary.Catalogs.Enumerations.Result result)
-        {
-            this.Game = game;
-            this.Result = result;
-        }
+        public virtual Guid GameId { get; set; }
+        public virtual Game Game { get; set; }
+        public virtual QuinielaLibrary.Catalogs.Enumerations.Result Result { get; set; }
+                
     }
 }

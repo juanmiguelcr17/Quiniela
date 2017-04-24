@@ -5,10 +5,10 @@ namespace QuinielaLibrary.Pools
 {
     public class Group
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public Image Photo { get; set; }
-        public int UsersLimit { get; set; }
-        public List<User> Members { get; set; }
+        public virtual Guid Id { get; set; }
+        public virtual string Name { get; set; }
+        public virtual Image Photo { get; set; }
+        public virtual int UsersLimit { get; set; }
+        public virtual List<User> Members { get; set; }
     }
 }

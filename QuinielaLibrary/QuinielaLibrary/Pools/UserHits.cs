@@ -7,9 +7,9 @@ namespace QuinielaLibrary.Pools
 {
     public class UserHits
     {
-        public Guid Id { get; set; }
-        public int UserId { get; set; }
-        public string UserName { get; set; }
-        public int Hits { get; set; }
+        public virtual Guid Id { get; set; }
+        public virtual Guid UserId { get; set; }
+        public virtual User User { get; set; }
+        public virtual int Hits { get; set; }
     }
 }

@@ -66,17 +66,5 @@ namespace QuinielaLibrary.Entities
         }
         public QuinielaLibrary.Catalogs.Enumerations.Position Position { get; set; }
 
-        public Player(Guid id, string name, string lastname, DateTime birthdate, string nationality, QuinielaLibrary.Catalogs.Enumerations.Position position)
-        {
-            this.Id = id;
-            this.Name = name;
-            this.LastName = lastname;
-            this.BirthDate = birthdate;
-            this.Nationality = nationality;
-            this.Position = position;
-        }
-        public Player()
-        {
-        }
     }
 }

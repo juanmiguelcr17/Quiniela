@@ -1,47 +1,28 @@
-﻿using QuinielaLibrary.Entities;
-using System;
+﻿using System;
 using System.Drawing;
 
 namespace QuinielaLibrary.Pools
 {
     // EL CONTROL DE USUARIOS DEBE IR EN OTRA LIBRERIA
-    public class User : Person
+    public class User
     {
-        public override Guid Id
+        public virtual Guid Id
         {
-            get
-            {
-                return base.Id;
-            }
-            set
-            {
-                base.Id = value;
-            }
+            get;
+            set;
         }
-        public override string Name
+        public virtual string Name
         {
-            get
-            {
-                return base.Name;
-            }
-            set
-            {
-                base.Name = value;
-            }
+            get;
+            set;
         }
-        public override string LastName
+        public virtual string LastName
         {
-            get
-            {
-                return base.LastName;
-            }
-            set
-            {
-                base.LastName = value;
-            }
+            get;
+            set;
         }
-        public Image Photo { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public virtual Image Photo { get; set; }
+        public virtual string Email { get; set; }
+        public virtual string Password { get; set; }
     }
 }

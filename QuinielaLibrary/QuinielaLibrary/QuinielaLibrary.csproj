@@ -45,7 +45,19 @@
     <Compile Include="Actions.cs" />
     <Compile Include="Catalogs\Enumerations.cs" />
     <Compile Include="Catalogs\Score.cs" />
+    <Compile Include="Entities\Coach.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Entities\League.cs" />
+    <Compile Include="Entities\Person.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Entities\Player.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Entities\Referee.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Entities\Season.cs" />
     <Compile Include="Pools\Classification.cs" />
     <Compile Include="Pools\UserHits.cs" />
@@ -55,12 +67,8 @@
     <Compile Include="Pools\GroupPrediction.cs" />
     <Compile Include="Pools\Pool.cs" />
     <Compile Include="Pools\Prediction.cs" />
-    <Compile Include="Entities\Referee.cs" />
     <Compile Include="Entities\Team.cs" />
-    <Compile Include="Entities\Player.cs" />
     <Compile Include="Entities\Game.cs" />
-    <Compile Include="Entities\Person.cs" />
-    <Compile Include="Entities\Coach.cs" />
     <Compile Include="Pools\User.cs" />
     <Compile Include="Entities\Week.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

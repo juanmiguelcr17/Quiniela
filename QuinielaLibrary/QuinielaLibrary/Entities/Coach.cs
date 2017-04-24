@@ -64,16 +64,5 @@ namespace QuinielaLibrary.Entities
                 base.Nationality = value;
             }
         }
-        public Coach()
-        {
-        }
-        public Coach(Guid id, string name, string lastname, DateTime birthdate, string nationality)
-        {
-            this.Id = id;
-            this.Name = name;
-            this.LastName = lastname;
-            this.BirthDate = birthdate;
-            this.Nationality = nationality;
-        }
     }
 }
