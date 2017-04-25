@@ -11,15 +11,13 @@
 <body>
     <div id="header">
         <h1><a href="/"></a>Quiniela MVC4</h1>
-        <ul id="navlist">
-            <li class="first"><a href="@Url.Content("~")" id="current">Inicio</a></li>
-            <li>@Html.Partial("_LoginPartial")</li>
+        <ul class="navlist">
+            <li><a href="@Url.Content("~")" id="current">Inicio</a></li>
         </ul>
-        <div id="mainmenu">
-            @Html.Partial("_MainMenuPartial")
-        </div>
+        <div id="loginmenu">@Html.Partial("_LoginPartial")</div>
     </div>
-            
+    <div id="menu">@Html.Partial("_MainMenuPartial")</div>
+                
     <div id="main">
         @RenderBody()
     </div>

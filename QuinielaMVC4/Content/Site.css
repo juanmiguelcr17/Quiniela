@@ -47,11 +47,6 @@ body
 	background: url(/content/Images/home-showcase.png) no-repeat;
 }
 
-ul li a
-{
-	font-size: 16px;
-}
-
 #main
 {
 	overflow: hidden;
@@ -59,14 +54,14 @@ ul li a
 	float: left;
 }
 
-ul
+/*ul
 {
 	list-style-type: square;
 	margin-left: 25px;
 	font-size: 14px;
-}
+}*/
 
-ul#album-list
+/*ul#album-list
 {
 	list-style: none;
 	margin-left: 0px;
@@ -96,7 +91,7 @@ ul#album-list li a span
 #cart
 {
 	float: right;
-}
+}*/
 
 #update-message
 {
@@ -135,18 +130,20 @@ ul#album-list li a span
 }
 
 /******************** Top Navigation ************************/
-ul#navlist
+
+.navlist
 {
-	float: right;
+	float:right;
 }
 
-ul#navlist li
+.navlist li
 {
 	display: inline;
 }
 
-ul#navlist li a
+.navlist li a
 {
+    font-size: 16px;
 	border-left: 1px dotted #8A8575;
 	padding: 10px;
 	margin-top: 10px;
@@ -155,22 +152,42 @@ ul#navlist li a
 	float: left;
 }
 
-ul#navlist li:first-child a
+.navlist li:first-child a
 {
 	border: none;
 }
 
-ul#navlist li a:hover
+.navlist li a:hover
 {
     font-size: 18px;
 	color: #F6855E;
 }
 
+#menulist 
+{
+    float:left;
+}
+#menulist li a 
+{
+    color: #0873ba;
+}
+#menulist li a:hover
+{
+    font-size: 18px;
+	color: whitesmoke;
+}
+
 /********************* End top navigation ***************************/
-ul li
+
+ul li:first-child a 
+{
+    border:none;
+}
+
+ul li a
 {
     font-size: 14px;
-    color: whitesmoke;
+    color: #0873ba;
 }
 
 p
@@ -203,10 +220,7 @@ h3
 {
 	color: #5E5B54;
 }
-ul li a
-{
-    color: #0873ba;
-}
+
 a:link, a:visited
 {
 	color: #0873ba;
