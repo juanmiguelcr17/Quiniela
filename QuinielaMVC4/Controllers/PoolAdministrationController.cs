@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace QuinielaMVC4.Controllers
 {
-    public class HomeController : Controller
+    public class PoolAdministrationController : Controller
     {
         //
-        // GET: /Home/
+        // GET: /PoolAdministration/
 
         public ActionResult Index()
         {

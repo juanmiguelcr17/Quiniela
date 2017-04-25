@@ -29,16 +29,16 @@ body
 #header h1
 {
 	font-size: 18px;
-    color: #F6855E;
+    color: #0873ba;
 	float: left;
 	background: url(/content/Images/logo.png) no-repeat;
 	padding: 45px 0px 5px 0px;
 }
 
-#menu 
+/*#menu 
 {
     padding-top:0px;
-}
+}*/
 
 #promotion
 {
@@ -129,56 +129,6 @@ ul#album-list li a span
 	font-family: Constantia, Georgia, serif;
 }
 
-/******************** Top Navigation ************************/
-
-.navlist
-{
-	float:right;
-}
-
-.navlist li
-{
-	display: inline;
-}
-
-.navlist li a
-{
-    font-size: 16px;
-	border-left: 1px dotted #8A8575;
-	padding: 10px;
-	margin-top: 10px;
-    color: whitesmoke;
-	text-decoration: none;
-	float: left;
-}
-
-.navlist li:first-child a
-{
-	border: none;
-}
-
-.navlist li a:hover
-{
-    font-size: 18px;
-	color: #F6855E;
-}
-
-#menulist 
-{
-    float:left;
-}
-#menulist li a 
-{
-    color: #0873ba;
-}
-#menulist li a:hover
-{
-    font-size: 18px;
-	color: whitesmoke;
-}
-
-/********************* End top navigation ***************************/
-
 ul li:first-child a 
 {
     border:none;
@@ -196,6 +146,11 @@ p
 	margin-top: 0px;
     font-size: 14px;
     color: whitesmoke;
+}
+
+h1 
+{
+    color: indianred;
 }
 
 h2
@@ -398,3 +353,67 @@ input[type=text], input[type=password], select
 .content tr:hover a:active {
   color: #ff0000;
 }
+
+/******************** Top Navigation ************************/
+.navlist
+{
+	float:right;
+}
+
+.navlist li
+{
+	display: inline;
+}
+
+.navlist li a
+{
+    font-size: 16px;
+	border-left: 1px dotted #8A8575;
+	padding: 10px;
+	margin-top: 10px;
+    color: whitesmoke;
+	text-decoration: none;
+	float: left;
+}
+
+.navlist li:first-child a
+{
+	border: none;
+}
+
+.navlist li a:hover
+{
+    font-size: 18px;
+	/*color: #F6855E;*/
+    color: indianred;
+}
+
+
+#menulist 
+{
+    width:100%;
+    float:left;
+}
+#menulist li a 
+{
+    /*color: #0873ba;*/
+    color: indianred;
+}
+#menulist li a:hover
+{
+    font-size: 18px;
+	color: whitesmoke;
+}
+#optAdmin a
+{
+    color: #0873ba;
+}
+#optAdmin a:hover
+{
+    color: whitesmoke;
+}
+
+
+/********************* End top navigation ***************************/
+
+

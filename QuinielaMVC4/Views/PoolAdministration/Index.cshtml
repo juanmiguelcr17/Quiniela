@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Administración de quinielas";
+}
+
+@*<h2>Administración de quinielas</h2>*@
+
+<ul class="navlist">
+    <li><h1>Administrar</h1></li>
+        
+    <li><@Html.ActionLink("Partidos","GameList","PoolAdministration")</li>
+    
+    <li>@Html.ActionLink("Jornadas","WeekList","PoolAdministration")</li>
+    
+    <li>@Html.ActionLink("Temporadas","SeasonList","PoolAdministration")</li>
+    
+    <li>@Html.ActionLink("Ligas","LeagueList","PoolAdministration")</li>
+  
+    <li>@Html.ActionLink("Equipos","TeamList","PoolAdministration")</li>
+</ul> 
