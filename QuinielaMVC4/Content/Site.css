@@ -49,6 +49,7 @@ body
 
 #main
 {
+    width:100%;
 	overflow: hidden;
 	padding: 0 0 15px 10px;
 	float: left;
@@ -303,7 +304,7 @@ input[type=text], input[type=password], select
 	border: 1px solid whitesmoke;
 	border-collapse: collapse;
 	color: whitesmoke;
-	min-width: 500px;
+	/*min-width:500px;*/
 	width: 100%;
 }
 
@@ -311,13 +312,16 @@ input[type=text], input[type=password], select
 {
     border: 1px solid whitesmoke;
 	line-height: 25px;
+    text-align:center;
 }
 
 .content th
 {
+    background-color:indianred;
+    font-weight:bold;
     text-align:center;
     border-top: 1px solid whitesmoke;
-    color: #F6855E;
+    color: whitesmoke;
     font-size: 16px;
 }
 .content td
@@ -337,7 +341,8 @@ input[type=text], input[type=password], select
 
 .td-c1 
 {
-    color:#0595d4;
+    text-align:right;
+    color:whitesmoke;
     font-weight: bold;
 }
 .td-c1:hover 
@@ -348,7 +353,7 @@ input[type=text], input[type=password], select
     color:whitesmoke;
 }
 .content tr:hover a:hover {
-  color: #F6855E;
+  color: indianred;
 }
 .content tr:hover a:active {
   color: #ff0000;

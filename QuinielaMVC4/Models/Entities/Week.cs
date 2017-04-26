@@ -1,66 +1,25 @@
-﻿
+﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
+
 namespace QuinielaMVC4.Models.Entities
 {
-    public class Week : QuinielaLibrary.Entities.Week
+    public class Week
     {
-        public override System.Guid Id
-        {
-            get
-            {
-                return base.Id;
-            }
-            set
-            {
-                base.Id = value;
-            }
-        }
+        [Key]
+        [ScaffoldColumn(false)]
+        public System.Guid WeekId { get; set; }
 
-        public override int Number
-        {
-            get
-            {
-                return base.Number;
-            }
-            set
-            {
-                base.Number = value;
-            }
-        }
+        [Display(Name="Número")]
+        public int Number { get; set; }
 
-        public override System.Guid SeasonId
-        {
-            get
-            {
-                return base.SeasonId;
-            }
-            set
-            {
-                base.SeasonId = value;
-            }
-        }
+        [Display(Name = "Nombre")]
+        public string Name { get; set; }
 
-        public override QuinielaLibrary.Entities.Season Season
-        {
-            get
-            {
-                return base.Season;
-            }
-            set
-            {
-                base.Season = value;
-            }
-        }
+        [ScaffoldColumn(false)]
+        public System.Guid SeasonId { get; set; }
 
-        public override System.Collections.Generic.List<QuinielaLibrary.Entities.Game> Games
-        {
-            get
-            {
-                return base.Games;
-            }
-            set
-            {
-                base.Games = value;
-            }
-        }
+        public Season Season {  get; set; }
+
+        public System.Collections.Generic.List<Game> Games { get; set; }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -14,7 +16,10 @@ namespace QuinielaMVC4
     {
         protected void Application_Start()
         {
+            System.Data.Entity.Database.SetInitializer(new QuinielaMVC4.Models.BaseData());
             AreaRegistration.RegisterAllAreas();
+
+            //Database.DefaultConnectionFactory = new SqlConnectionFactory(@"Data Source=(localdb)\v11.0; Integrated Security=True; MultipleActiveResultSets=True");
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

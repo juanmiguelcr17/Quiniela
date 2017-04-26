@@ -1,42 +1,18 @@
-﻿
+﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
+
 namespace QuinielaMVC4.Models.Entities
 {
-    public class League : QuinielaLibrary.Entities.League
+    public class League
     {
-        public override System.Guid Id
-        {
-            get
-            {
-                return base.Id;
-            }
-            set
-            {
-                base.Id = value;
-            }
-        }
+        [Key]
+        [ScaffoldColumn(false)]
+        public System.Guid LeagueId { get; set; }
 
-        public override string Name
-        {
-            get
-            {
-                return base.Name;
-            }
-            set
-            {
-                base.Name = value;
-            }
-        }
+        [Display(Name="Liga")]
+        public string Name { get; set; }
 
-        public override string Country
-        {
-            get
-            {
-                return base.Country;
-            }
-            set
-            {
-                base.Country = value;
-            }
-        }
+        [Display(Name="Pais")]
+        public string Country { get; set; }
     }
 }

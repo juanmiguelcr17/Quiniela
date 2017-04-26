@@ -1,114 +1,45 @@
-﻿
+﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
+
 namespace QuinielaMVC4.Models.Entities
 {
-    public class Team : QuinielaLibrary.Entities.Team
+    public class Team
     {
-        public override System.Guid Id
-        {
-            get
-            {
-                return base.Id;
-            }
-            set
-            {
-                base.Id = value;
-            }
-        }
+        [ScaffoldColumn(false)]
+        [Key]
+        public System.Guid TeamId { get; set; }
 
-        public override string ShortName
-        {
-            get
-            {
-                return base.ShortName;
-            }
-            set
-            {
-                base.ShortName = value;
-            }
-        }
+        [ScaffoldColumn(false)]
+        public string Pronoun { get; set; }
 
-        public override string Name
-        {
-            get
-            {
-                return base.Name;
-            }
-            set
-            {
-                base.Name = value;
-            }
-        }
+        [Display(Name="Sobrenombre")]
+        public string ShortName { get; set; }
 
-        public override string Abbreviation
-        {
-            get
-            {
-                return base.Abbreviation;
-            }
-            set
-            {
-                base.Abbreviation = value;
-            }
-        }
+        [Required(ErrorMessage = "Debes elegir el nombre del equipo")]
+        [Display(Name = "Equipo")]
+        public string Name { get; set; }
 
-        public override System.Drawing.Image Shield
-        {
-            get
-            {
-                return base.Shield;
-            }
-            set
-            {
-                base.Shield = value;
-            }
-        }
+        [Required(ErrorMessage = "Debes elegir la abreviatura del equipo")]
+        [Display(Name = "Abreviatura")]
+        public string Abbreviation { get; set; }
 
-        public override System.Drawing.Color Color
-        {
-            get
-            {
-                return base.Color;
-            }
-            set
-            {
-                base.Color = value;
-            }
-        }
+        [Display(Name = "Escudo")]
+        [DataType(DataType.ImageUrl)]
+        public string Shield { get; set; }
 
-        public override string Stadium
-        {
-            get
-            {
-                return base.Stadium;
-            }
-            set
-            {
-                base.Stadium = value;
-            }
-        }
+        [Required(ErrorMessage = "Debes elegir el color del equipo")]
+        public System.Drawing.Color Color { get; set; }
 
-        public override string City
-        {
-            get
-            {
-                return base.City;
-            }
-            set
-            {
-                base.City = value;
-            }
-        }
+        [Display(Name = "Estadio")]
+        public string Stadium { get; set; }
 
-        public override string State
-        {
-            get
-            {
-                return base.State;
-            }
-            set
-            {
-                base.State = value;
-            }
-        }
+        [Display(Name = "Ciudad")]
+        public string City { get; set; }
+
+        [Display(Name = "Estado")]
+        public string State { get; set; }
+
+        [Display(Name = "País")]
+        public string Country { get; set; }
     }
 }

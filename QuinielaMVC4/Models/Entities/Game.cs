@@ -1,102 +1,31 @@
-﻿
+﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
+
 namespace QuinielaMVC4.Models.Entities
 {
-    public class Game : QuinielaLibrary.Entities.Game
+    public class Game
     {
-        public override System.Guid Id
-        {
-            get
-            {
-                return base.Id;
-            }
-            set
-            {
-                base.Id = value;
-            }
-        }
+        [Key]
+        [ScaffoldColumn(false)]
+        public System.Guid GameId { get; set; }
 
-        public override System.Guid LocalId
-        {
-            get
-            {
-                return base.LocalId;
-            }
-            set
-            {
-                base.LocalId = value;
-            }
-        }
+        [ScaffoldColumn(false)]
+        public System.Guid LocalId { get; set; }
 
-        public override System.Guid VisitorId
-        {
-            get
-            {
-                return base.VisitorId;
-            }
-            set
-            {
-                base.VisitorId = value;
-            }
-        }
+        [ScaffoldColumn(false)]
+        public System.Guid VisitorId { get; set; }
 
-        public override QuinielaLibrary.Entities.Team Local
-        {
-            get
-            {
-                return base.Local;
-            }
-            set
-            {
-                base.Local = value;
-            }
-        }
+        public Team Local { get; set; }
 
-        public override QuinielaLibrary.Entities.Team Visitor
-        {
-            get
-            {
-                return base.Visitor;
-            }
-            set
-            {
-                base.Visitor = value;
-            }
-        }
+        public Team Visitor { get;  set; }
 
-        public override QuinielaLibrary.Catalogs.Score Score
-        {
-            get
-            {
-                return base.Score;
-            }
-            set
-            {
-                base.Score = value;
-            }
-        }
+        public QuinielaLibrary.Catalogs.Score Score { get; set; }
 
-        public override System.DateTime Date
-        {
-            get
-            {
-                return base.Date;
-            }
-            set
-            {
-                base.Date = value;
-            }
-        }
+        [Required(ErrorMessage = "Debes elegir la fecha del partido")]
+        [Display(Name = "Fecha")]
+        public System.DateTime Date { get; set; }
 
-        public override QuinielaLibrary.Catalogs.Enumerations.Result Result
-        {
-            get
-            {
-                return base.Result;
-            }
-            set
-            {
-                base.Result = value;
-            }
-        }
+        [ScaffoldColumn(false)]
+        public QuinielaLibrary.Catalogs.Enumerations.Result Result { get; set; }
     }
 }

@@ -1,104 +1,34 @@
-﻿
+﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
+
 namespace QuinielaMVC4.Models.Entities
 {
-    public class Season : QuinielaLibrary.Entities.Season
+    public class Season
     {
-        public override System.Guid Id
-        {
-            get
-            {
-                return base.Id;
-            }
-            set
-            {
-                base.Id = value;
-            }
-        }
+        [Key]
+        [ScaffoldColumn(false)]
+        public System.Guid SeasonId { get; set; }
 
-        public override string Name
-        {
-            get
-            {
-                return base.Name;
-            }
-            set
-            {
-                base.Name = value;
-            }
-        }
+        [Display(Name="Nombre")]
+        public string Name { get; set; }
 
-        public override System.Guid LeagueId
-        {
-            get
-            {
-                return base.LeagueId;
-            }
-            set
-            {
-                base.LeagueId = value;
-            }
-        }
+        [ScaffoldColumn(false)]
+        public System.Guid LeagueId { get; set; }
 
-        public override QuinielaLibrary.Entities.League League
-        {
-            get
-            {
-                return base.League;
-            }
-            set
-            {
-                base.League = value;
-            }
-        }
+        public League League { get; set; }
 
         public System.Collections.Generic.List<Team> Teams { get; set; }
 
-        public override System.DateTime Year
-        {
-            get
-            {
-                return base.Year;
-            }
-            set
-            {
-                base.Year = value;
-            }
-        }
+        [Display(Name = "Año")]
+        public int Year { get; set; }
 
-        public override System.DateTime Starts
-        {
-            get
-            {
-                return base.Starts;
-            }
-            set
-            {
-                base.Starts = value;
-            }
-        }
+        [Display(Name = "Inicia")]
+        public System.DateTime Starts { get; set; }
 
-        public override System.DateTime Ends
-        {
-            get
-            {
-                return base.Ends;
-            }
-            set
-            {
-                base.Ends = value;
-            }
-        }
+        [Display(Name = "Termina")]
+        public System.DateTime Ends { get; set; }
 
-        public override int Weeks
-        {
-            get
-            {
-                return base.Weeks;
-            }
-            set
-            {
-                base.Weeks = value;
-            }
-        }
+        [Display(Name = "No. Semanas")]
+        public int Weeks { get; set; }
     }
 }
