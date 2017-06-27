@@ -1,8 +1,25 @@
-﻿@{
+﻿@model System.Web.Mvc.HandleErrorInfo
+@{
+    @*Layout = "_Layout.cshtml";*@
     ViewBag.Title = "Error";
 }
-<h2>Error</h2>
-<p>We're sorry, we've hit an unexpected error.
-    <a href="javascript:history.go(-1)">Click here</a>
-    if you would like to go back and try it again.
-</p>
+<div class="list-sfs-holder">
+    <div class="alert alert-error">
+        <p>Ocurrió un error inesperado. Por favor contacta al administrador.</p>
+    </div>
+   @if (Model != null && HttpContext.Current.IsDebuggingEnabled)
+    {
+        <div>
+            <p>
+                <b>Exception:</b> @Model.Exception.Message<br />
+                <b>Controller:</b> @Model.ControllerName<br />
+                <b>Action:</b> @Model.ActionName
+            </p>
+            <div style="overflow:scroll">
+                <p>
+                    @Model.Exception.StackTrace
+                </p>
+            </div>
+        </div>
+    }
+</div>
