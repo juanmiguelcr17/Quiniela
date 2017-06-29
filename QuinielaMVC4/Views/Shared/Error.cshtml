@@ -1,25 +1,42 @@
 ﻿@model System.Web.Mvc.HandleErrorInfo
+
+@helper ShowDetail(Exception ex)
+{
+while (ex.InnerException != null)
+{
+    ex = ex.InnerException;
+}
+    <div>
+        <p>
+            <b>Exception:</b> @ex.Message<br />
+        </p>
+        <div style="overflow:scroll">
+            <p>
+                @ex.StackTrace
+            </p>
+        </div>
+    </div>
+if (ex.InnerException != null)
+{
+    //ShowDetail(ex.InnerException);
+}
+}
+
 @{
-    @*Layout = "_Layout.cshtml";*@
     ViewBag.Title = "Error";
 }
-<div class="list-sfs-holder">
-    <div class="alert alert-error">
+<div>
+    <div>
         <p>Ocurrió un error inesperado. Por favor contacta al administrador.</p>
     </div>
-   @if (Model != null && HttpContext.Current.IsDebuggingEnabled)
+    @if (Model != null && HttpContext.Current.IsDebuggingEnabled)
     {
         <div>
             <p>
-                <b>Exception:</b> @Model.Exception.Message<br />
                 <b>Controller:</b> @Model.ControllerName<br />
-                <b>Action:</b> @Model.ActionName
+                <b>Action:</b> @Model.ActionName<br />
             </p>
-            <div style="overflow:scroll">
-                <p>
-                    @Model.Exception.StackTrace
-                </p>
-            </div>
         </div>
+        @ShowDetail(@Model.Exception)
     }
 </div>

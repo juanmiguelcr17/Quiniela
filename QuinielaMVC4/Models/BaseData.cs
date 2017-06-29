@@ -49,6 +49,16 @@ namespace QuinielaMVC4.Models
             };
             context.Seasons.Add(season);
 
+            long id = 0;
+            foreach (var team in teams)
+            {
+                SeasonTeams st = new SeasonTeams();
+                st.Id = id;
+                st.SeasonId = season.SeasonId;
+                st.TeamId = team.TeamId;
+                context.SeasonTeams.Add(st);
+            }
+
             new List<Week> { 
                 new Week{ WeekId = Guid.NewGuid(), Number = 1, Name = "Jornada 1", SeasonId = season.SeasonId, Season = season, Games = null },
                 new Week{ WeekId = Guid.NewGuid(), Number = 2, Name = "Jornada 2", SeasonId = season.SeasonId, Season = season, Games = null },

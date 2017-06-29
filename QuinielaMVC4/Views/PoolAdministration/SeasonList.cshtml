@@ -1,14 +1,13 @@
 ﻿@model IEnumerable<QuinielaMVC4.Models.Entities.Season>
 
 @{
-    ViewBag.Title = "Quiniela | Temporadas por Liga";
+    ViewBag.Title = "Quiniela | Temporadas";
 }
 
-<br />
-@Html.ActionLink("Añadir Temporada", "SeasonCreate", new { id=ViewData["id"] }, new { @class = "a-button" })
-@Html.ActionLink("Volver", "LeagueList","",new { @class="a-button" })
-<br />
-<br />
+<p>
+    @Html.ActionLink("Nueva Temporada", "Create")
+</p>
+
 <table class="content">
     <tr>
         <th>
@@ -47,8 +46,9 @@
             @Html.DisplayFor(modelItem => item.Weeks)
         </td>
         <td>
-            @Html.ActionLink("Detalles", "SeasonDetails", new { id=item.SeasonId }) |   
-            @Html.ActionLink("Equipos", "SeasonTeams", new { seasonId = item.SeasonId })
+            @Html.ActionLink("Editar", "Edit", new { id=item.SeasonId }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.SeasonId }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.SeasonId })
         </td>
     </tr>
 }

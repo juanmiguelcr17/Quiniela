@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace QuinielaMVC4.Controllers
 {
@@ -15,7 +11,7 @@ namespace QuinielaMVC4.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                ViewData.Add("IsAdmin", User.IsInRole("administrator"));
+                ViewData.Add("IsAdmin", User.IsInRole("Administrador"));
             }
             return View();
         }

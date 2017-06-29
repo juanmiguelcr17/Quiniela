@@ -107,16 +107,23 @@ ul#album-list li a span
 	padding: 5px;
 	margin-top: 10px; 
 	border: 1px;
-	background: #5e5b54;
+    border-radius:10px;
+	background: #ce1414;
 	color: #fff;
 	font-weight: bold;
 }
 .button:hover, input[type=submit]:hover {
-    background:#0873ba;
+    background:#b70707;
+}
+
+.button:active, input[type=submit]:active{
+    background-color:#780505;
 }
 
 .button a
 {
+    font-family:Calibri;
+    font-weight:bold;
 	color: #fff !important;
 }
 
@@ -175,6 +182,28 @@ h3
 #header h1 h3 em
 {
 	color: #5E5B54;
+}
+
+.a-button 
+{
+    margin-top:10px;
+    font-family:Calibri;
+    font-weight:bold;
+    background-color:#ce1414;
+    padding:5px;
+    border-radius:10px;
+}
+
+.a-button:link, .a-button:visited{
+    color: whitesmoke;
+}
+
+.a-button:hover{
+    background-color:#b70707;
+}
+
+.a-button:active{
+    background-color:#780505;
 }
 
 a:link, a:visited

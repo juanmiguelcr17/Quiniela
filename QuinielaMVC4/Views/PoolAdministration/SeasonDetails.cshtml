@@ -1,0 +1,42 @@
+﻿@model QuinielaMVC4.Models.Entities.Season
+
+@{
+    ViewBag.Title = "Quiniela | Detalles Temporada";
+}
+
+<h2>Detalles de la temporada</h2>
+
+<div>
+    <h1>@Model.Name</h1>
+    <br />
+    <table class="content" style="width:50%">
+        
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Year)</td>
+        
+            <td>@Html.DisplayFor(model => model.Year)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Starts)</td>
+        
+            <td>@Html.DisplayFor(model => model.Starts)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Ends)</td>
+        
+            <td>@Html.DisplayFor(model => model.Ends)</td>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.Weeks)</td>
+        
+            <td>@Html.DisplayFor(model => model.Weeks)</td>
+        </tr>
+
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

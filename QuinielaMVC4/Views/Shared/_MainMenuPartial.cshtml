@@ -9,7 +9,7 @@
             <li>
                 @Html.ActionLink("Clasificación", "Classification", "Pool")
             </li>
-            @if ((bool)ViewData["IsAdmin"] == true)
+            @if (ViewData["IsAdmin"]!= null && (bool)ViewData["IsAdmin"] == true)
             {
             <li class="optAdmin">
                 @*@Html.ActionLink("Administrar info", "Index", "PoolAdministration",htmlAttributes: new { @class = "optAdmin", @href = @Url.Action("Index","PoolAdministration")})*@

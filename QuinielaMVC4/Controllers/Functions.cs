@@ -8,7 +8,7 @@ namespace QuinielaMVC4.Controllers
         {
             if (controller.User.Identity.IsAuthenticated)
             {
-                controller.ViewData.Add("IsAdmin", controller.User.IsInRole("administrator"));
+                controller.ViewData.Add("IsAdmin", controller.User.IsInRole("Administrador"));
             }
         }
     }
