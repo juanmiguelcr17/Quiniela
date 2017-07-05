@@ -47,7 +47,10 @@
             @Html.DisplayFor(modelItem => item.Abbreviation)
         </td>*@
         <td>
-            <img src="@Html.DisplayFor(modelItem => item.Shield)" title="@Html.DisplayFor(modelItem => item.Name)"/>
+            <img src="@Html.DisplayFor(modelItem => item.Shield)" 
+                 title="@Html.DisplayFor(modelItem => item.Name)"
+                 width="@Html.DisplayFor(modelItem => item.ShieldWidth)"
+                 height="@Html.DisplayFor(modelItem => item.ShieldHeight)"/>
         </td>
         @*<td>
             @Html.DisplayFor(modelItem => item.Stadium)

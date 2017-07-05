@@ -23,8 +23,14 @@ namespace QuinielaMVC4.Models.Entities
         public string Abbreviation { get; set; }
 
         [Display(Name = "Escudo")]
-        [DataType(DataType.ImageUrl)]
+        //[DataType(DataType.ImageUrl)]
         public string Shield { get; set; }
+
+        [ScaffoldColumn(false)]
+        public decimal ShieldWidth { get; set; }
+
+        [ScaffoldColumn(false)]
+        public decimal ShieldHeight { get; set; }
 
         [Required(ErrorMessage = "Debes elegir el color del equipo")]
         public System.Drawing.Color Color { get; set; }

@@ -179,6 +179,11 @@ h3
 	color: #9B9993;
 }
 
+img
+{
+    margin-top:10px;
+}
+
 #header h1 h3 em
 {
 	color: #5E5B54;
