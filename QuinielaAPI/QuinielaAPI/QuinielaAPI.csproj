@@ -199,6 +199,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\ResourcesController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -213,6 +214,24 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\America.png" />
+    <Content Include="Content\Images\Atlas.png" />
+    <Content Include="Content\Images\Chivas.png" />
+    <Content Include="Content\Images\CruzAzul.png" />
+    <Content Include="Content\Images\Jaguares.png" />
+    <Content Include="Content\Images\Leon.png" />
+    <Content Include="Content\Images\Monarcas.png" />
+    <Content Include="Content\Images\Monterrey.png" />
+    <Content Include="Content\Images\Necaxa.png" />
+    <Content Include="Content\Images\Pachuca.png" />
+    <Content Include="Content\Images\Puebla.png" />
+    <Content Include="Content\Images\Pumas.png" />
+    <Content Include="Content\Images\Queretaro.png" />
+    <Content Include="Content\Images\Santos.png" />
+    <Content Include="Content\Images\Tigres.png" />
+    <Content Include="Content\Images\Tijuana.png" />
+    <Content Include="Content\Images\Toluca.png" />
+    <Content Include="Content\Images\Veracruz.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -223,6 +242,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\JMCR.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
