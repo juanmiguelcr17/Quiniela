@@ -1,0 +1,52 @@
+﻿@model IEnumerable<QuinielaMVC4.Models.Entities.Team>
+
+
+
+<div id="divPopup" class="table-responsive">
+    <table class="table table-striped table-hover3">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Shield)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Shield)
+                </td>
+                <td>
+                    @Html.ActionLink("Añadir", "AddToSeason", new { teamId = item.TeamId, seasonId = ViewData["seasonId"] }, new { @class = "AddToSeason" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#divPopup').dialog({
+            height: 400,
+            width: 500,
+            modal: true,
+            buttons: {
+                "OK": function () {
+                    $(this).dialog("close");
+                    alert('You selected OK!')
+                },
+                "Cancel": function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+    });
+</script>

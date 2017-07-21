@@ -15,6 +15,12 @@ namespace QuinielaMVC4.Controllers
         //
         // GET: /PoolAdministration/
 
+        protected override void EndExecute(IAsyncResult asyncResult)
+        {
+            fn.VerifyIfIsAdmin(this);
+            base.EndExecute(asyncResult);
+        }
+
         public ActionResult Index()
         {
             //fn.VerifyIfIsAdmin(this);
@@ -126,14 +132,50 @@ namespace QuinielaMVC4.Controllers
             {
                 teams.Add(db.Teams.Find(team.TeamId));
             }
+            ViewData["seasonId"] = seasonId;
             return View(teams);
         }
 
-        protected override void EndExecute(IAsyncResult asyncResult)
+        public ActionResult TeamDetails(Guid teamId)
         {
-            fn.VerifyIfIsAdmin(this);
-            base.EndExecute(asyncResult);
+            Team team = db.Teams.Find(teamId);
+            return View(team);
         }
 
+        [HttpPost]
+        public ActionResult TeamDetails(Team team)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(team).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                //Mostrar algun mensaje de actualización o redirigir?
+            }
+            return View(team);
+        }
+
+        [HttpPost, ActionName("TeamDelete")]
+        public ActionResult TeamDeleteConfirmed (Guid id)
+        {
+            Team team = db.Teams.Find(id);
+            //db.Teams.Remove(team);
+            db.Entry(team).State = System.Data.Entity.EntityState.Deleted;
+            db.SaveChanges();
+            //Mostrar algun mensaje de actualización o redirigir?
+            return RedirectToAction("");
+        }
+
+        public ActionResult TeamList()
+        {
+            var teams = db.Teams.ToList();
+            return Json(teams);
+        }
+
+        [ChildActionOnly]
+        public ActionResult TeamListPartial()
+        {
+            var teams = db.Teams.ToList();
+            return PartialView(teams);
+        }
     }
 }

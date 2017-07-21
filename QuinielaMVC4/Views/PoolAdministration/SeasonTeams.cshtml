@@ -4,7 +4,35 @@
     ViewBag.Title = "Quiniela | Equipos Temporada";
 }
 
+<link href="@Url.Content("~/Content/jquery-ui.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Scripts/jquery-ui-1.8.20.min.js")" type="text/javascript"></script>
+
+<script type="text/javascript">
+    //$(function () {
+    //    $(".AddTeam").click(function () {
+    //        $.post("/PoolAdministration/TeamList", "",
+    //            function (data) {
+    //                if (data != null) {
+    //                    alert('Si devuelve datos')
+    //                }
+    //            });
+    //    });
+    //});
+    $(function () {
+        $(".AddTeam").click(function () {
+            $.get("/PoolAdministration/TeamListPartial");
+        });
+    });
+</script>
 <h2>Equipos de la Temporada</h2>
+
+<p>
+    <div>
+        <a class="a-button AddTeam">Añadir Equipo</a>
+    </div>
+    
+    @*@Html.ActionLink("Añadir Equipo", "TeamList", new { seasonId = ViewData["seasonId"] }, new { @class = "a-button" })*@
+</p>
 
 <table class="content" style="width:50%">
     <tr>
@@ -12,13 +40,13 @@
             @Html.DisplayNameFor(model => model.ShortName)
         </th>*@
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @*@Html.DisplayNameFor(model => model.Name)*@
         </th>
         @*<th>
             @Html.DisplayNameFor(model => model.Abbreviation)
         </th>*@
         <th>
-            @Html.DisplayNameFor(model => model.Shield)
+            @*@Html.DisplayNameFor(model => model.Shield)*@
         </th>
         @*<th>
             @Html.DisplayNameFor(model => model.Stadium)
@@ -65,9 +93,8 @@
             @Html.DisplayFor(modelItem => item.Country)
         </td>*@
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TeamId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TeamId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TeamId })
+            @Html.ActionLink("Detalles", "TeamDetails", new { teamId = item.TeamId }) |
+            @Html.ActionLink("Eliminar", "TeamDelete", new { teamId = item.TeamId })
         </td>
     </tr>
 }
