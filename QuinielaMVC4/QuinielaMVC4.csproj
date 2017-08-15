@@ -30,6 +30,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -163,7 +164,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="App_Data\ASPNETDB.MDF" />
-    <Content Include="App_Data\aspnetdb_log.LDF">
+    <Content Include="App_Data\ASPNETDB_log.ldf">
       <DependentUpon>ASPNETDB.MDF</DependentUpon>
     </Content>
     <Content Include="App_Data\QuinielaDBContext.mdf" />
@@ -171,50 +172,13 @@
       <DependentUpon>QuinielaDBContext.mdf</DependentUpon>
     </Content>
     <Content Include="Content\404.png" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-1.7.1.intellisense.js" />
-    <Content Include="Scripts\jquery-1.7.1.js" />
-    <Content Include="Scripts\jquery-1.7.1.min.js" />
-    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
-    <Content Include="Scripts\jquery-3.1.1.min.js" />
-    <Content Include="Scripts\jquery-3.1.1.slim.js" />
-    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
-    <Content Include="Scripts\jquery-ui-1.8.20.js" />
-    <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.1.1.min.map" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\MicrosoftAjax.debug.js" />
-    <Content Include="Scripts\MicrosoftAjax.js" />
-    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
-    <Content Include="Scripts\MicrosoftMvcAjax.js" />
-    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
-    <Content Include="Scripts\MicrosoftMvcValidation.js" />
-    <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -247,7 +211,6 @@
     <Content Include="Views\PoolAdministration\TeamDetails.cshtml" />
     <Content Include="Views\PoolAdministration\TeamListPartial.cshtml" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
@@ -265,6 +228,7 @@
       <Name>QuinielaLibrary</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

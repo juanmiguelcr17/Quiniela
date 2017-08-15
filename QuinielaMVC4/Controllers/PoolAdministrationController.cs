@@ -172,10 +172,37 @@ namespace QuinielaMVC4.Controllers
         }
 
         [ChildActionOnly]
-        public ActionResult TeamListPartial()
+        public ActionResult TeamListPartial(Guid seasonId)
         {
+            ViewData["seasonId"] = seasonId;
             var teams = db.Teams.ToList();
             return PartialView(teams);
+        }
+
+        [ChildActionOnly]
+        [ActionName("AddToSeason")]
+        public ActionResult SeasonAddTeam(Guid teamId, Guid seasonId)
+        {
+            var query = from data in db.SeasonTeams
+                        select new
+                        {
+                            SeasonId = seasonId,
+                            TeamId = teamId
+                        };
+            int count = query.Count();
+            if(count > 0)
+            {
+                return new JsonResult { Data = new { Message = "El equipo ya está en esta temporada" } };
+            }
+            else
+            {
+                SeasonTeams st = new SeasonTeams();
+                st.SeasonId = seasonId;
+                st.TeamId = teamId;
+                db.SeasonTeams.Add(st);
+                db.SaveChanges();
+                return new JsonResult { Data = new { Message = "Se añadió el equipo" } };
+            }
         }
     }
 }
