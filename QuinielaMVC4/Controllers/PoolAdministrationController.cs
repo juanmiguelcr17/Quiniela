@@ -178,30 +178,53 @@ namespace QuinielaMVC4.Controllers
             var teams = db.Teams.ToList();
             return PartialView(teams);
         }
-
-        [ChildActionOnly]
-        [ActionName("AddToSeason")]
+        
+        [HttpPost, ActionName("AddToSeason")]
         public ActionResult SeasonAddTeam(Guid teamId, Guid seasonId)
         {
-            var query = from data in db.SeasonTeams
-                        select new
-                        {
-                            SeasonId = seasonId,
-                            TeamId = teamId
-                        };
-            int count = query.Count();
-            if(count > 0)
+            try
             {
-                return new JsonResult { Data = new { Message = "El equipo ya está en esta temporada" } };
+                var res = db.SeasonTeams.Where(a => a.SeasonId == seasonId).Where(b => b.TeamId == teamId).ToList();
+
+                int count = res.Count();
+                if(count > 0)
+                {
+                    return Json(new { data = new { MessageType = 2, Message = "El equipo ya está en esta temporada" } }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    SeasonTeams st = new SeasonTeams();
+                    st.SeasonId = seasonId;
+                    st.TeamId = teamId;
+                    db.SeasonTeams.Add(st);
+                    db.SaveChanges();
+                    return Json(new { data = new { MessageType = 1, Message = "Se añadió el equipo" } }, JsonRequestBehavior.AllowGet);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                SeasonTeams st = new SeasonTeams();
-                st.SeasonId = seasonId;
-                st.TeamId = teamId;
-                db.SeasonTeams.Add(st);
-                db.SaveChanges();
-                return new JsonResult { Data = new { Message = "Se añadió el equipo" } };
+                return Json(new { data = new { MessageType = 3, Message = "Algo salió mal: " + ex.Message } }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult SeasonDeleteTeam(Guid teamId, Guid seasonId)
+        {
+            try
+            {
+                var team = db.SeasonTeams.Where(s => s.SeasonId == seasonId).Where(t => t.TeamId == teamId);
+                int cont = team.Count();
+                if(cont > 0)
+                {
+                    db.Entry(team).State = System.Data.Entity.EntityState.Deleted;
+                    db.SaveChanges();
+                    return Json(new { data = new { MessageType = 1, Message = "Se eliminó el equipo de la temporada" } }, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { data = new { MessageType = 2, Message = "El equipo no pertenece a esta temporada" } }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { data = new { MessageType = 3, Message = "Algo salió mal: " + ex.Message } }, JsonRequestBehavior.AllowGet);
             }
         }
     }

@@ -3,30 +3,11 @@
 @{
     ViewBag.Title = "Quiniela | Equipos Temporada";
 }
-
-
-
-@*<script type="text/javascript">
-    //$(function () {
-    //    $(".AddTeam").click(function () {
-    //        $.post("/PoolAdministration/TeamList", "",
-    //            function (data) {
-    //                if (data != null) {
-    //                    alert('Si devuelve datos')
-    //                }
-    //            });
-    //    });
-    //});
-    //$(function () {
-    //    $(".AddTeam").click(function () {
-            //$.get("/PoolAdministration/TeamListPartial");
-     //   });
-   // });
-</script>*@
+<script src="~/Scripts/QuinielaMVC4.validations.season.js"></script>
 <h2>Equipos de la Temporada</h2>
 
 <div>
-    @{Html.RenderAction("TeamListPartial",new  { SeasonId = ViewData["seasonId"] });}
+    @{Html.RenderAction("TeamListPartial", new  { SeasonId = ViewData["seasonId"] });}
 </div>
 <br/>
 
@@ -60,7 +41,7 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    <tr id="row-@item.TeamId">
         @*<td>
             @Html.DisplayFor(modelItem => item.ShortName)
         </td>*@
@@ -90,7 +71,8 @@
         </td>*@
         <td>
             @Html.ActionLink("Detalles", "TeamDetails", new { teamId = item.TeamId }) |
-            @Html.ActionLink("Eliminar", "TeamDelete", new { teamId = item.TeamId })
+            @*@Html.ActionLink("Eliminar", "SeasonDeleteTeam", new { teamId = item.TeamId, seasonId = ViewData["seasonId"] })*@
+            <a href="#" class="RemoveLink" data-idTeam="@item.TeamId" data-idSeason="@ViewData["seasonId"]">Quitar de la temporada</a>
         </td>
     </tr>
 }

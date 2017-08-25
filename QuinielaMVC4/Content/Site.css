@@ -197,6 +197,7 @@ img
     background-color:#ce1414;
     padding:5px;
     border-radius:10px;
+    cursor:pointer;
 }
 
 .a-button:link, .a-button:visited{

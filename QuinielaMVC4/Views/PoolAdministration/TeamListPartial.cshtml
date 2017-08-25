@@ -1,8 +1,6 @@
 ﻿@model IEnumerable<QuinielaMVC4.Models.Entities.Team>
 
-
 <a href="#" class="a-button" data-toggle="modal" data-target="#ModalTeams">Añadir Equipo</a>
-
 <div class="modal fade" id="ModalTeams" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -35,10 +33,10 @@
                                      height="@Html.DisplayFor(modelItem => item.ShieldHeight)" />
                             </td>
                             <td>
-                                @Html.ActionLink("Añadir", "AddToSeason", new { teamId = item.TeamId, seasonId = ViewData["seasonId"] }, new { @class = "AddToSeason" })
+                                @Ajax.ActionLink("Añadir", "AddToSeason", new { teamId = item.TeamId, seasonId = ViewData["seasonId"] }, new AjaxOptions { HttpMethod = "POST", OnComplete = "OnSuccess", OnFailure="OnError" }, new { @class = "a-button" })
                             </td>
                         </tr>
-                    }
+                           }
 
                 </table>
             </div>
