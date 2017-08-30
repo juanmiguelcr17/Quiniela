@@ -12,9 +12,7 @@ namespace QuinielaMVC4.Controllers
     {
         QuinielaEntities db = new QuinielaEntities();
         Functions fn = new Functions();
-        //
-        // GET: /PoolAdministration/
-
+        
         protected override void EndExecute(IAsyncResult asyncResult)
         {
             fn.VerifyIfIsAdmin(this);
@@ -26,10 +24,10 @@ namespace QuinielaMVC4.Controllers
             //fn.VerifyIfIsAdmin(this);
             return View();
         }
-
+        
+        #region Ligas
         public ActionResult LeagueList()
         {
-            //fn.VerifyIfIsAdmin(this);
             var leagues = db.Leagues.ToList();
             return View(leagues);
         }
@@ -38,12 +36,6 @@ namespace QuinielaMVC4.Controllers
         {
             var seasons = db.Seasons.Where(s => s.LeagueId == id).ToList();
             ViewData["id"] = id;
-            return View(seasons);
-        }
-
-        public ActionResult SeasonList()
-        {
-            var seasons = db.Seasons.ToList();
             return View(seasons);
         }
 
@@ -56,7 +48,7 @@ namespace QuinielaMVC4.Controllers
         [HttpPost]
         public ActionResult LeagueEdit(League league)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 db.Entry(league).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
@@ -69,15 +61,6 @@ namespace QuinielaMVC4.Controllers
         {
             League league = db.Leagues.Find(id);
             return View(league);
-        }
-
-        [HttpPost, ActionName("LeagueDelete")]
-        public ActionResult DeleteConfirmed(Guid id)
-        {
-            League league = db.Leagues.Find(id);
-            db.Leagues.Remove(league);
-            db.SaveChanges();
-            return RedirectToAction("LeagueList");
         }
 
         public ActionResult LeagueCreate()
@@ -96,6 +79,23 @@ namespace QuinielaMVC4.Controllers
                 return RedirectToAction("LeagueList");
             }
             return View(league);
+        }
+
+        [HttpPost, ActionName("LeagueDelete")]
+        public ActionResult LeagueDeleteConfirmed(Guid id)
+        {
+            League league = db.Leagues.Find(id);
+            db.Leagues.Remove(league);
+            db.SaveChanges();
+            return RedirectToAction("LeagueList");
+        }
+        #endregion
+
+        #region Temporadas
+        public ActionResult SeasonList()
+        {
+            var seasons = db.Seasons.ToList();
+            return View(seasons);
         }
 
         public ActionResult SeasonCreate(Guid id)
@@ -136,49 +136,6 @@ namespace QuinielaMVC4.Controllers
             return View(teams);
         }
 
-        public ActionResult TeamDetails(Guid teamId)
-        {
-            Team team = db.Teams.Find(teamId);
-            return View(team);
-        }
-
-        [HttpPost]
-        public ActionResult TeamDetails(Team team)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(team).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
-                //Mostrar algun mensaje de actualización o redirigir?
-            }
-            return View(team);
-        }
-
-        [HttpPost, ActionName("TeamDelete")]
-        public ActionResult TeamDeleteConfirmed (Guid id)
-        {
-            Team team = db.Teams.Find(id);
-            //db.Teams.Remove(team);
-            db.Entry(team).State = System.Data.Entity.EntityState.Deleted;
-            db.SaveChanges();
-            //Mostrar algun mensaje de actualización o redirigir?
-            return RedirectToAction("");
-        }
-
-        public ActionResult TeamList()
-        {
-            var teams = db.Teams.ToList();
-            return Json(teams);
-        }
-
-        [ChildActionOnly]
-        public ActionResult TeamListPartial(Guid seasonId)
-        {
-            ViewData["seasonId"] = seasonId;
-            var teams = db.Teams.ToList();
-            return PartialView(teams);
-        }
-        
         [HttpPost, ActionName("AddToSeason")]
         public ActionResult SeasonAddTeam(Guid teamId, Guid seasonId)
         {
@@ -187,7 +144,7 @@ namespace QuinielaMVC4.Controllers
                 var res = db.SeasonTeams.Where(a => a.SeasonId == seasonId).Where(b => b.TeamId == teamId).ToList();
 
                 int count = res.Count();
-                if(count > 0)
+                if (count > 0)
                 {
                     return Json(new { data = new { MessageType = 2, Message = "El equipo ya está en esta temporada" } }, JsonRequestBehavior.AllowGet);
                 }
@@ -207,16 +164,16 @@ namespace QuinielaMVC4.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost, ActionName("RemoveFromSeason")]
         public ActionResult SeasonDeleteTeam(Guid teamId, Guid seasonId)
         {
             try
             {
                 var team = db.SeasonTeams.Where(s => s.SeasonId == seasonId).Where(t => t.TeamId == teamId);
                 int cont = team.Count();
-                if(cont > 0)
+                if (cont > 0)
                 {
-                    db.Entry(team).State = System.Data.Entity.EntityState.Deleted;
+                    db.SeasonTeams.Remove(team.First());
                     db.SaveChanges();
                     return Json(new { data = new { MessageType = 1, Message = "Se eliminó el equipo de la temporada" } }, JsonRequestBehavior.AllowGet);
                 }
@@ -227,5 +184,96 @@ namespace QuinielaMVC4.Controllers
                 return Json(new { data = new { MessageType = 3, Message = "Algo salió mal: " + ex.Message } }, JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
+
+        #region Equipos
+        [HttpGet]
+        public ActionResult TeamCreate()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult TeamCreateNew()
+        {
+            Team team = new Team();
+            try
+            {
+                if (TryUpdateModel(team,new[] { "ShortName", "Name", "Abbreviation", "Shield", "Stadium", "City", "State", "Country" }) && ModelState.IsValid)
+                {
+                    team.TeamId = Guid.NewGuid();
+                    team.ShieldHeight = 40;
+                    team.ShieldWidth = 40;
+                    db.Teams.Add(team);
+                    db.SaveChanges();
+                    return Json(new { data = new { MessageType = 1, Message = "Se añadió el nuevo equipo" } }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { data = new { MessageType = 3, Message = "Algo salió mal: " + ex.Message } }, JsonRequestBehavior.AllowGet);
+            }
+            return View(team);
+        }
+
+        public ActionResult TeamDetails(Guid teamId)
+        {
+            Team team = db.Teams.Find(teamId);
+            return View(team);
+        }
+
+        [HttpPost]
+        public ActionResult TeamDetails(Team team)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(team).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                RedirectToAction("TeamList");
+            }
+            return View(team);
+        }
+
+        [HttpPost, ActionName("TeamDelete")]
+        public ActionResult TeamDeleteConfirmed (Guid id)
+        {
+            try
+            {
+                Team team = db.Teams.Find(id);
+                var exists = db.SeasonTeams.Where(t => t.TeamId == team.TeamId);
+                if (exists.Count() > 0)
+                {
+                    var season = db.Seasons.Where(s => s.SeasonId == exists.FirstOrDefault().SeasonId).First();
+                    var league = db.Leagues.Where(l => l.LeagueId == season.LeagueId).First();
+                    return Json(new { data = new { MessageType = 2, Message = "No se puede eliminar el equipo ya que está registrado en la siguiente temporada: " 
+                        + season.Name + " " +
+                        "de la liga: " + league.Name
+                    } }, JsonRequestBehavior.AllowGet);
+                }
+                db.Entry(team).State = System.Data.Entity.EntityState.Deleted;
+                db.SaveChanges();
+                return Json(new { data = new { MessageType = 1, Message = "Se eliminó el equipo" } }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { data = new { MessageType = 3, Message = "Algo salió mal: " + ex.Message } }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult TeamList()
+        {
+            var teams = db.Teams.ToList();
+            return View(teams);
+        }
+
+        [ChildActionOnly]
+        public ActionResult TeamListPartial(Guid seasonId)
+        {
+            ViewData["seasonId"] = seasonId;
+            var teams = db.Teams.ToList();
+            return PartialView(teams);
+        }
+        #endregion
+
     }
 }

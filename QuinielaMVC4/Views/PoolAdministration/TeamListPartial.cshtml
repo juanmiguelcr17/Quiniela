@@ -20,7 +20,7 @@
                         <th></th>
                     </tr>
 
-                    @foreach (var item in Model)
+                    @foreach (var item in Model.OrderBy(a => a.Name))
                     {
                         <tr>
                             <td>
@@ -33,11 +33,10 @@
                                      height="@Html.DisplayFor(modelItem => item.ShieldHeight)" />
                             </td>
                             <td>
-                                @Ajax.ActionLink("Añadir", "AddToSeason", new { teamId = item.TeamId, seasonId = ViewData["seasonId"] }, new AjaxOptions { HttpMethod = "POST", OnComplete = "OnSuccess", OnFailure="OnError" }, new { @class = "a-button" })
+                                @Ajax.ActionLink("Añadir", "AddToSeason", new { teamId = item.TeamId, seasonId = ViewData["seasonId"] }, new AjaxOptions { HttpMethod = "POST", OnComplete = "OnComplete", OnFailure="OnError" }, new { @class = "a-button" })
                             </td>
                         </tr>
-                           }
-
+                    }
                 </table>
             </div>
             <div class="modal-footer">

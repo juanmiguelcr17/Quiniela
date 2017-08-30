@@ -1,19 +1,28 @@
 ﻿@model QuinielaMVC4.Models.Entities.Team
 
 @{
-    ViewBag.Title = "Detalles";
+    ViewBag.Title = "Quiniela | Crear equipo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm())
+<h2>Crear equipo</h2>
+
+@*@using (Html.BeginForm())
+{
+    <input type="button" value="Upload" id="upload" />
+}*@
+
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
+        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.ShortName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ShortName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.ShortName, new { htmlAttributes = new {@class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ShortName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -37,16 +46,11 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Shield, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Shield, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Shield, "", new { @class = "text-danger" })
-                @Html.EditorFor(model => model.ShieldHeight, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ShieldHeight, "", new { @class = "text-danger" })
-                @Html.EditorFor(model => model.ShieldWidth, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ShieldWidth, "", new { @class = "text-danger" })
-                <img src="@Html.DisplayFor(model => model.Shield)"
-                     title="@Html.DisplayFor(model => model.Name)"
-                     width="@Html.DisplayFor(model => model.ShieldWidth)"
-                     height="@Html.DisplayFor(model => model.ShieldHeight)" />
+                <!--<input type="hidden" id="shieldUrl" />-->
+                @Html.HiddenFor(model => model.Shield, new { @id = "shieldUrl" })
+                <input type="file" value="Choose a file" id="fileUpload" accept="image/*" />
+                @*@Html.EditorFor(model => model.Shield, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Shield, "", new { @class = "text-danger" })*@
             </div>
         </div>
 
@@ -84,16 +88,19 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-default" />
+                <!--<input type="submit" value="Guardar" class="a-button" />-->
+                <a id="save" class="a-button">Guardar</a>
             </div>
         </div>
     </div>
 }
 
 <div>
-    @*@Html.ActionLink("Back to List", "Index")*@
+    @Html.ActionLink("Volver", "TeamList")
 </div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/QuinielaMVC4.validations.team.js"></script>
+@*<script src="~/Scripts/QuinielaMVC4.validations.js"></script>*@

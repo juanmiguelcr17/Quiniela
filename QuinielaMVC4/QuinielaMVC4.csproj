@@ -181,6 +181,10 @@
     <Content Include="Scripts\bootstrap-dialog.js" />
     <Content Include="Scripts\bootstrap-dialog.min.js" />
     <Content Include="Scripts\bootstrap.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -189,8 +193,15 @@
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\QuinielaMVC4.validations.season.js" />
+    <Content Include="Scripts\QuinielaMVC4.validations.team.js" />
+    <Content Include="Views\PoolAdministration\TeamList.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -222,6 +233,7 @@
     <Content Include="Views\PoolAdministration\SeasonTeams.cshtml" />
     <Content Include="Views\PoolAdministration\TeamDetails.cshtml" />
     <Content Include="Views\PoolAdministration\TeamListPartial.cshtml" />
+    <Content Include="Views\PoolAdministration\TeamCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
