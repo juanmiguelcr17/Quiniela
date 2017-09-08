@@ -4,39 +4,33 @@
     ViewBag.Title = "Quiniela | Detalles Temporada";
 }
 
-<h2>Detalles de la temporada</h2>
+<div class="page-header">
+    <div class="container">
+        <h2>Detalles de la temporada</h2>
 
-<div>
-    <h1>@Model.Name</h1>
-    <br />
-    <table class="content" style="width:50%">
-        
-        <tr>
-            <td>@Html.DisplayNameFor(model => model.Year)</td>
-        
-            <td>@Html.DisplayFor(model => model.Year)</td>
-        </tr>
-
-        <tr>
-            <td>@Html.DisplayNameFor(model => model.Starts)</td>
-        
-            <td>@Html.DisplayFor(model => model.Starts)</td>
-        </tr>
-
-        <tr>
-            <td>@Html.DisplayNameFor(model => model.Ends)</td>
-        
-            <td>@Html.DisplayFor(model => model.Ends)</td>
-        </tr>
-
-        <tr>
-            <td>@Html.DisplayNameFor(model => model.Weeks)</td>
-        
-            <td>@Html.DisplayFor(model => model.Weeks)</td>
-        </tr>
-
-    </table>
+            <h1>@Model.Name</h1>
+            <br />
+            <div class="col-sm-8">
+                <table class="table table-striped table-hover">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Year)</th>
+                        <th>@Html.DisplayNameFor(model => model.Starts)</th>
+                        <th>@Html.DisplayNameFor(model => model.Ends)</th>
+                        <th>@Html.DisplayNameFor(model => model.Weeks)</th>
+                    </tr>
+                    <tr class="active">
+                        <td>@Html.DisplayFor(model => model.Year)</td>
+                        <td>@Html.DisplayFor(model => model.Starts)</td>
+                        <td> @Html.DisplayFor(model => model.Ends)</td>
+                        <td> @Html.DisplayFor(model => model.Weeks)</td>
+                    </tr>
+                </table>
+                @Html.ActionLink("Equipos registrados", "SeasonTeams", new { seasonId = Model.SeasonId }, new { @class = "btn btn-danger btn-sm" })
+                <a id="btnVolver" class="btn btn-default btn-sm">Volver</a>
+            </div>
+        <p>
+            <br />
+            
+        </p>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>

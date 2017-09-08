@@ -43,8 +43,8 @@ namespace QuinielaMVC4.Models
                 League = league,
                 Teams = teams,
                 Year = DateTime.Now.Year,
-                Starts = DateTime.Parse("2017-01-01"),
-                Ends = DateTime.Parse("2017-06-15"),
+                Starts = "01/01/2017",
+                Ends = "15/16/2017",
                 Weeks = 20
             };
             context.Seasons.Add(season);

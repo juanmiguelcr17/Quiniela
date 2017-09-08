@@ -4,74 +4,82 @@
     ViewBag.Title = "Quiniela | Equipos";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<script src="~/Scripts/QuinielaMVC4.validations.js"></script>
-<p>
-    <br />
-    @Html.ActionLink("Nuevo equipo", "TeamCreate", null , new { @class = "a-button" })
-</p>
-<table class="content">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ShortName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Abbreviation)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Shield)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Stadium)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.State)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Country)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model.OrderBy(t => t.Name)) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShortName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Abbreviation)
-        </td>
-        <td>
-            <img src="@Html.DisplayFor(modelItem => item.Shield)"
-                 title="@Html.DisplayFor(modelItem => item.Name)"
-                 width="@Html.DisplayFor(modelItem => item.ShieldWidth)"
-                 height="@Html.DisplayFor(modelItem => item.ShieldHeight)" />
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Stadium)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.State)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Country)
-        </td>
-        <td>
-            @Html.ActionLink("Detalles", "TeamDetails", new { teamId=item.TeamId }) |
-            @Ajax.ActionLink("Eliminar","TeamDelete", new { id = item.TeamId } ,new AjaxOptions { OnComplete="OnComplete", OnFailure="OnError", HttpMethod="POST" })
-        </td>
-    </tr>
-}
+<div class="page-header">
+    <div class="container">
+        <h2>Equipos registrados</h2>
+        <p>
+            @Html.ActionLink("Nuevo equipo", "TeamCreate", null, new { @class = "btn btn-danger btn-sm" })
+        </p>
+        <div class="col-sm-12">
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ShortName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Abbreviation)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Shield)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Stadium)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.City)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.State)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Country)
+                    </th>
+                    <th></th>
+                </tr>
 
-</table>
+                @foreach (var item in Model.OrderBy(t => t.Name))
+                {
+                    <tr class="active">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ShortName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Abbreviation)
+                        </td>
+                        <td>
+                            <img src="@Html.DisplayFor(modelItem => item.Shield)"
+                                 title="@Html.DisplayFor(modelItem => item.Name)"
+                                 width="@Html.DisplayFor(modelItem => item.ShieldWidth)"
+                                 height="@Html.DisplayFor(modelItem => item.ShieldHeight)" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Stadium)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.City)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.State)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Country)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Detalles", "TeamDetails", new { teamId = item.TeamId }, new { @class = "btn btn-default btn-xs" }) 
+                            @Ajax.ActionLink("Eliminar", "TeamDelete", new { id = item.TeamId }, new AjaxOptions { OnComplete = "OnComplete", OnFailure = "OnError", HttpMethod = "POST" }, new { @class = "btn btn-danger btn-xs" })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+            <a id="btnVolver" class="btn btn-default btn-sm">Volver</a>
+        </div>
+    </div>
+</div>

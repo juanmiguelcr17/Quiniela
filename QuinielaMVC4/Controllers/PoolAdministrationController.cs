@@ -100,7 +100,7 @@ namespace QuinielaMVC4.Controllers
 
         public ActionResult SeasonCreate(Guid id)
         {
-            if (id != null)
+            if (id != Guid.Empty)
                 ViewData["id"] = id;
             return View();
         }

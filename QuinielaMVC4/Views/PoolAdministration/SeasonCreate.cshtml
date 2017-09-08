@@ -2,68 +2,141 @@
 
 @{
     ViewBag.Title = "Quiniela | Nueva Temporada";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Crear Temporada</h2>
+<script src="~/Scripts/moment-with-locales.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
 
+<div class="page-header">
+    <div class="container">
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.LeagueId, new { Value = ViewData["id"] })
-    <table class="content" style="width:50%">
-        <tr>
-            <th>Dato</th>
-            <th>Valor</th>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })</td>
-            <td>
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(model => model.Year, htmlAttributes: new { @class = "control-label col-md-2" })</td>
-            <td>
-                @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(model => model.Starts, htmlAttributes: new { @class = "control-label col-md-2" })</td>
-            <td>
-                @Html.EditorFor(model => model.Starts, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Starts, "", new { @class = "text-danger" })
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(model => model.Ends, htmlAttributes: new { @class = "control-label col-md-2" })</td>
-            <td>
-                @Html.EditorFor(model => model.Ends, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Ends, "", new { @class = "text-danger" })
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(model => model.Weeks, htmlAttributes: new { @class = "control-label col-md-2" })</td>
-            <td>
-                @Html.EditorFor(model => model.Weeks, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Weeks, "", new { @class = "text-danger" })
-            </td>
-        </tr>
-    </table>
-    <div class="form-group">
-        <input type="submit" value="Añadir" />
-        @Html.ActionLink("Volver", "LeagueDetails", new { id = ViewData["id"] })
-        
+        <h2>Crear Temporada</h2>
+        <div class="col-md-6">
+            <div class="well bs-component">
+                @using (Html.BeginForm("SeasonCreate", "PoolAdministration", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken()
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.LeagueId, new { Value = ViewData["id"] })
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Year, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class='col-sm-6'>
+                                            <div class="form-group">
+                                                <div class='input-group date' id='dtpYear' style="width:50%;">
+                                                    @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control input-sm", @type = "text" } })
+                                                    <span class="input-group-addon input-sm">
+                                                        <span class="glyphicon glyphicon-time"></span>
+                                                    </span>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <script type="text/javascript">
+                                $(function () {
+                                    $('#dtpYear').datetimepicker({
+                                        format: 'YYYY',
+                                        viewMode: 'years'
+                                    });
+                                });
+                                </script>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Starts, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class='col-sm-6'>
+                                            <div class="form-group">
+                                                <div class='input-group date' id='dtpStarts' style="width:50%;">
+                                                    @Html.EditorFor(model => model.Starts, new { htmlAttributes = new { @class = "form-control input-sm", @type = "text" } })
+                                                    <span class="input-group-addon input-sm">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Starts, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <script type="text/javascript">
+                                $(function () {
+                                    $('#dtpStarts').datetimepicker({
+                                        format: 'L',
+                                        locale: 'es'
+                                    });
+                                });
+                                </script>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Ends, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class='col-sm-6'>
+                                            <div class="form-group">
+                                                <div class='input-group date' id='dtpEnds' style="width:50%;">
+                                                    @Html.EditorFor(model => model.Ends, new { htmlAttributes = new { @class = "form-control input-sm", @type = "text" } })
+                                                    <span class="input-group-addon input-sm">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Ends, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <script type="text/javascript">
+                                $(function () {
+                                    $('#dtpEnds').datetimepicker({
+                                        format: 'L',
+                                        locale: 'es'
+                                    });
+                                });
+                                </script>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Weeks, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.Weeks, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                                @Html.ValidationMessageFor(model => model.Weeks, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10 text-right">
+                                <a id="btnVolver" class="btn btn-default btn-sm">Volver</a>
+                                <input type="submit" value="Añadir" class="btn btn-danger btn-sm" />
+                            </div>
+                        </div>
+                    
+
+                }
+            </div>
+        </div>
     </div>
-}
-
-<div>
-    
 </div>
-
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+        

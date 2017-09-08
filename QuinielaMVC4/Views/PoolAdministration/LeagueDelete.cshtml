@@ -4,28 +4,33 @@
     ViewBag.Title = "Quiniela | Eliminar";
 }
 
-<h3>¿Estás seguro de querer eliminar este registro?</h3>
-<div>
-    <h4>League</h4>
-    <hr />
-    <table class="content">
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.Name)</th>
-            <th>@Html.DisplayNameFor(model => model.Country)</th>
-        </tr>
-        <tr>
-            <td>@Html.DisplayFor(model => model.Name)</td>
-            <td>@Html.DisplayFor(model => model.Country)</td>
-        </tr>
-
-    </table>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
+<div class="container">
+    <div class="page-header">
+        <h3>¿Estás seguro de querer eliminar este registro?</h3>
         <div>
-            <input type="submit" value="Eliminar" />
-            @Html.ActionLink("Volver", "LeagueList","",new { @class ="a-button" })
+            <h4>League</h4>
+            <hr />
+            <table class="content">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Name)</th>
+                    <th>@Html.DisplayNameFor(model => model.Country)</th>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayFor(model => model.Name)</td>
+                    <td>@Html.DisplayFor(model => model.Country)</td>
+                </tr>
+
+            </table>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div>
+                    <input type="submit" value="Eliminar" />
+                    <a id="btnVolver" class="btn btn-primary btn-sm">Volver</a>
+                </div>
+            }
         </div>
-    }
+    </div>
 </div>

@@ -19,13 +19,18 @@ namespace QuinielaMVC4.Models.Entities
         public System.Collections.Generic.List<Team> Teams { get; set; }
 
         [Display(Name = "Año")]
+        [Range(1900, 2100, ErrorMessage = "Solo se permite registrar temporadas entre los años 1900 y 2100")]
         public int Year { get; set; }
 
+        [DataType(DataType.Date)]
         [Display(Name = "Inicia")]
-        public System.DateTime Starts { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        public string Starts { get; set; }
 
+        [DataType(DataType.Date)]
         [Display(Name = "Termina")]
-        public System.DateTime Ends { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        public string Ends { get; set; }
 
         [Display(Name = "No. Semanas")]
         public int Weeks { get; set; }

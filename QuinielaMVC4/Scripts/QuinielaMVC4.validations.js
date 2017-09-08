@@ -50,6 +50,11 @@ function OnError(data) {
 function OnSuccess() {
     location.reload();
 }
+
+$("#btnVolver").click(function () {
+    window.history.back();
+});
+
 //    if (res.MessageType == 1)
 //    {
 //        BootstrapDialog.show({
