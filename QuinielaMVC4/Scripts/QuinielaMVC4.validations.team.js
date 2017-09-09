@@ -50,13 +50,13 @@ function NextStep(data) {
         },
         type: 'POST'
     }).done(function (result) {
-        console.log(result);
-        OnComplete(result);
+        //console.log(result);
+        OnCompleteTeam(result);
     }).fail(function (result) {
         OnError(result);
     });
 }
-function OnComplete(data) {
+function OnCompleteTeam(data) {
     var res = data.data;
     var _message = "";
     var _type = "";
@@ -88,10 +88,10 @@ function OnComplete(data) {
     dialog.realize();
     var btnres = dialog.getButton('btn-res');
     btnres.click(function (event) {
-        OnSuccess();
+        OnSuccessTeam();
     });
     dialog.open();
 }
-function OnSuccess() {
+function OnSuccessTeam() {
     window.location.href='/PoolAdministration/TeamList'
 }

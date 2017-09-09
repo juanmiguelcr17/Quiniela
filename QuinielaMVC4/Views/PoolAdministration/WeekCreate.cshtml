@@ -1,0 +1,49 @@
+﻿@model QuinielaMVC4.Models.Entities.Week
+
+@{
+    ViewBag.Title = "Quiniela | Crear semana";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <div class="container">
+        <h2>Nueva Semana</h2>
+        <div class="col-md-6">
+            <div class="well bs-component">
+                @using (Html.BeginForm("WeekCreate", "PoolAdministration", FormMethod.Post, new { @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken()
+                    
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    
+                    @Html.HiddenFor(model => model.SeasonId, new { @value = ViewBag.SeasonId })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Number, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Number, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                            @Html.ValidationMessageFor(model => model.Number, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10 text-right">
+                            @*<a id="btnVolver" class="btn btn-default btn-sm">Volver</a>*@
+                            @Html.ActionLink("Volver","WeekList",new { seasonId = ViewBag.seasonId }, new { @class="btn btn-danger btn-sm" })
+                            <a id="SaveWeek" class="btn btn-danger btn-sm">Crear</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/QuinielaMVC4.validations.week.js"></script>

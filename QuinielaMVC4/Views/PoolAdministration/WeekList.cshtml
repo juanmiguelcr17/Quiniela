@@ -1,0 +1,49 @@
+﻿@model IEnumerable<QuinielaMVC4.Models.Entities.Week>
+
+@{
+    ViewBag.Title = "Quiniela | Semamas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <div class="container">
+        <h2>Semanas de la temporada @ViewBag.Season.Name</h2>
+
+        <p>
+            @Html.ActionLink("Nueva Semana", "WeekCreate", new { seasonId = ViewBag.Season.SeasonId }, new { @class = "btn btn-default btn-sm" })
+        </p>
+
+        <div class="col-sm-8">
+            <table class="table table-striped table-hover">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Number)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model.OrderBy(m => m.Number))
+                {
+                    <tr class="active">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Number)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Editar", "WeekEdit", new { weekId = item.WeekId }, new { @class = "btn btn-default btn-xs" }) 
+                            @Html.ActionLink("Detalles", "WeekDetails", new { weekId = item.WeekId, seasonId = ViewBag.Season.SeasonId }, new { @class = "btn btn-danger btn-xs" }) 
+                            @Html.ActionLink("Eliminar", "WeekDelete", new { weekId = item.WeekId }, new { @class = "btn btn-default btn-xs" }) 
+                        </td>
+                    </tr>
+                }
+
+            </table>
+            @Html.ActionLink("Volver", "SeasonDetails", new { id = ViewBag.Season.SeasonId }, new { @class = "btn btn-default btn-sm" })
+        </div>
+    </div>
+</div>

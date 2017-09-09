@@ -148,6 +148,7 @@
     <Compile Include="Models\Entities\Shield.cs" />
     <Compile Include="Models\Entities\Team.cs" />
     <Compile Include="Models\Entities\Week.cs" />
+    <Compile Include="Models\Entities\WeekGames.cs" />
     <Compile Include="Models\Pools\Classification.cs" />
     <Compile Include="Models\Pools\GamePrediction.cs" />
     <Compile Include="Models\Pools\GeneralClassification.cs" />
@@ -158,7 +159,9 @@
     <Compile Include="Models\Pools\User.cs" />
     <Compile Include="Models\Pools\UserHits.cs" />
     <Compile Include="Models\QuinielaEntities.cs" />
+    <Compile Include="Parsers\WeekGameParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\WeekGamesVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -252,6 +255,12 @@
     <Content Include="Views\PoolAdministration\TeamDetails.cshtml" />
     <Content Include="Views\PoolAdministration\TeamListPartial.cshtml" />
     <Content Include="Views\PoolAdministration\TeamCreate.cshtml" />
+    <Content Include="Views\PoolAdministration\WeekList.cshtml" />
+    <Content Include="Views\PoolAdministration\WeekCreate.cshtml" />
+    <Content Include="Scripts\QuinielaMVC4.validations.week.js" />
+    <Content Include="Views\PoolAdministration\WeekEdit.cshtml" />
+    <Content Include="Views\PoolAdministration\WeekDetails.cshtml" />
+    <Content Include="Views\PoolAdministration\GameCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

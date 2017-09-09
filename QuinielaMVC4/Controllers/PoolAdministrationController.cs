@@ -1,5 +1,7 @@
 ﻿using QuinielaMVC4.Models;
 using QuinielaMVC4.Models.Entities;
+using QuinielaMVC4.Parsers;
+using QuinielaMVC4.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -273,6 +275,105 @@ namespace QuinielaMVC4.Controllers
             var teams = db.Teams.ToList();
             return PartialView(teams);
         }
+        #endregion
+
+        #region Semanas
+
+        [HttpGet]
+        public ActionResult WeekList(Guid seasonId)
+        {
+            var season = db.Seasons.Find(seasonId);
+            var weeks = db.Weeks.Where(w => w.SeasonId == seasonId).ToList();
+            ViewBag.Season = season;
+            return View(weeks);
+        }
+
+        [HttpGet]
+        public ActionResult WeekCreate(Guid seasonId)
+        {
+            ViewBag.SeasonId = seasonId;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult WeekCreate(Week week)
+        {
+            try
+            {
+                if(ModelState.IsValid)
+                {
+                    week.WeekId = Guid.NewGuid();
+                    db.Weeks.Add(week);
+                    db.SaveChanges();
+                    return Json(new { data = new { MessageType = 1, Message = "Se añadió la semana" } }, JsonRequestBehavior.AllowGet);
+                }
+                return View(week);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { data = new { MessageType = 3, Message = "Algo salió mal: " + ex.Message } }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult WeekEdit(Guid weekId)
+        {
+            var week = db.Weeks.Find(weekId);
+            return View(week);
+        }
+
+        [HttpPost]
+        public ActionResult WeekEdit(Week week)
+        {
+            try
+            {
+                if(ModelState.IsValid)
+                {
+                    db.Entry(week).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                    return Json(new { data = new { Location = "/PoolAdministration/WeekList?seasonId=" + week.SeasonId  } }, JsonRequestBehavior.AllowGet);
+                }
+                return View(week);
+            }
+            catch (Exception ex )
+            {
+                return Json(new { data = new { MessageType = 3, Message = "Algo salió mal: " + ex.Message } }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult WeekDetails(Guid weekId, Guid seasonId)
+        {
+            var gamesIds = db.WeekGames.Where(wg => wg.WeekId == weekId).ToList();
+            List<WeekGamesVM> games = new List<WeekGamesVM>();
+            foreach (var item in gamesIds)
+            {
+                games.Add(db.Games.Find(item.GameId).ToWeekGamesVM());
+            }
+            ViewBag.SeasonId = seasonId;
+            ViewBag.WeekId = weekId;
+            return View(games);
+        }
+        #endregion
+
+        #region Partidos
+
+        public ActionResult GameCreate(Guid weekId, Guid seasonId)
+        {
+            ViewBag.WeekId = weekId;
+            ViewBag.SeasonId = seasonId;
+
+            //Obtener los ids de los equipos registrados en la temporada para llenar el combo de locales y visitantes para dar de alta el partido
+            var seasonTeams = db.SeasonTeams.Where(st => st.SeasonId == seasonId).ToList();
+            List<Team> teams = new List<Team>();
+            foreach (var item in seasonTeams)
+            {
+                teams.Add(db.Teams.Find(item.TeamId));
+            }
+            //Parsear teams a selectlistitems
+            return View();
+        }
+
         #endregion
 
     }

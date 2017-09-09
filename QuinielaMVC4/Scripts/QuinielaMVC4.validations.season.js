@@ -1,4 +1,4 @@
-﻿function OnComplete(data) {
+﻿function OnCompleteSeason(data) {
     var json = $.parseJSON(data.responseText);
     var res = json.data;
     var _message = "";
@@ -31,12 +31,12 @@
     dialog.realize();
     var btnres = dialog.getButton('btn-res');
     btnres.click(function (event) {
-        OnSuccess();
+        OnSuccessSeason();
     });
     dialog.open();
 }
 
-function OnError(data) {
+function OnErrorSeason(data) {
     var json = $.parseJSON(data.responseText);
     var res = json.data;
     BootstrapDialog.show({
@@ -47,6 +47,7 @@ function OnError(data) {
     return false;
 }
 
-function OnSuccess() {
+function OnSuccessSeason() {
+    window.history.back();
     location.reload();
 }

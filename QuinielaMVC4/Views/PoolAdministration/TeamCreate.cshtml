@@ -10,7 +10,7 @@
         <h2>Crear equipo</h2>
         <div class="col-md-8">
             <div class="well bs-component">
-                @using (Html.BeginForm("TeamCreate", "PoolAdministration", FormMethod.Post, new { @class = "form-horizontal" }))
+                @using (Html.BeginForm("TeamCreateNew", "PoolAdministration", FormMethod.Post, new { @class = "form-horizontal" }))
                 {
                     @Html.AntiForgeryToken()
                     
@@ -83,7 +83,8 @@
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10 text-right">
                             <a id="btnVolver" class="btn btn-default btn-sm">Volver</a>
-                            <input type="submit" value="Guardar" class="btn btn-danger btn-sm" />
+                            <a id="save" class="btn btn-danger btn-sm">Guardar</a>
+                            <!--<input type="submit" value="Guardar" class="btn btn-danger btn-sm" />-->
                         </div>
                     </div>
                 }

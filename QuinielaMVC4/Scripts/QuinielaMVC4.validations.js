@@ -1,6 +1,5 @@
 ﻿function OnComplete(data) {
-    var json = $.parseJSON(data.responseText);
-    var res = json.data;
+    var res = data.data;
     var _message = "";
     var _type = "";
     var _title = "";
@@ -37,8 +36,7 @@
 }
 
 function OnError(data) {
-    var json = $.parseJSON(data.responseText);
-    var res = json.data;
+    var res = data.data;
     BootstrapDialog.show({
         type: BootstrapDialog.TYPE_DANGER,
         title: 'Error',
@@ -51,32 +49,13 @@ function OnSuccess() {
     location.reload();
 }
 
+function OnCompleteRedirect(data)
+{
+    var res = data.data;
+    var _location = res.Location;
+    window.location.href = _location;
+}
+
 $("#btnVolver").click(function () {
     window.history.back();
 });
-
-//    if (res.MessageType == 1)
-//    {
-//        BootstrapDialog.show({
-//            type: BootstrapDialog.TYPE_SUCCESS,
-//            title: 'Éxito',
-//            message: res.Message
-//        });
-//    }
-//    if (res.MessageType == 2)
-//    {
-//        BootstrapDialog.show({
-//            type: BootstrapDialog.TYPE_WARNING,
-//            title: 'Atención',
-//            message: res.Message
-//        });
-//    }
-//    if (res.MessageType == 3) {
-//        BootstrapDialog.show({
-//            type: BootstrapDialog.TYPE_DANGER,
-//            title: 'Error',
-//            message: res.Message
-//        });
-//    }
-//    return false;
-//}

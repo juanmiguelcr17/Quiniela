@@ -79,7 +79,7 @@
                         </td>*@
                         <td>
                             @Html.ActionLink("Detalles", "TeamDetails", new { teamId = item.TeamId }, new { @class = "btn btn-default btn-xs" }) 
-                            @Ajax.ActionLink("Quitar de la temporada", "RemoveFromSeason", new { teamId = item.TeamId, seasonId = ViewData["seasonId"] }, new AjaxOptions { HttpMethod = "POST", OnComplete = "OnComplete", OnFailure = "OnError" }, new { @class = "btn btn-danger btn-xs" })
+                            @Ajax.ActionLink("Quitar de la temporada", "RemoveFromSeason", new { teamId = item.TeamId, seasonId = ViewData["seasonId"] }, new AjaxOptions { HttpMethod = "POST", OnComplete = "OnCompleteSeason", OnFailure = "OnErrorSeason" }, new { @class = "btn btn-danger btn-xs" })
                         </td>
                     </tr>
                 }

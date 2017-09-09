@@ -14,5 +14,6 @@ namespace QuinielaMVC4.Models
         public DbSet<Game> Games { get; set; }
         public DbSet<Week> Weeks { get; set; }
         public DbSet<SeasonTeams> SeasonTeams { get; set; }
+        public DbSet<WeekGames> WeekGames { get; set; }
     }
 }

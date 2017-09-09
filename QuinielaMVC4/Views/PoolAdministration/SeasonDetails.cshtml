@@ -25,6 +25,7 @@
                         <td> @Html.DisplayFor(model => model.Weeks)</td>
                     </tr>
                 </table>
+                @Html.ActionLink("Jornadas", "WeekList", new { seasonId = Model.SeasonId }, new { @class = "btn btn-default btn-sm" })
                 @Html.ActionLink("Equipos registrados", "SeasonTeams", new { seasonId = Model.SeasonId }, new { @class = "btn btn-danger btn-sm" })
                 <a id="btnVolver" class="btn btn-default btn-sm">Volver</a>
             </div>

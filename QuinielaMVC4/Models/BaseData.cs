@@ -12,6 +12,8 @@ namespace QuinielaMVC4.Models
             var league = new League { LeagueId = Guid.NewGuid(), Name = "Liga MX", Country = "México" };
             context.Leagues.Add(league);
 
+            
+
             var teams = new List<Team> 
             { 
                 new Team() { TeamId = Guid.NewGuid(), Pronoun="Las", ShortName = "Águilas", Name = "América", Abbreviation = "Ame", Shield = "http://localhost:7555/QuinielaAPI/API/Resources/America", ShieldWidth=40, ShieldHeight=40, Color = System.Drawing.Color.Gold, Stadium = "Azteca", City = "Ciudad de México", State = "Ciudad de México", Country="México" },
@@ -19,6 +21,7 @@ namespace QuinielaMVC4.Models
                 new Team() { TeamId = Guid.NewGuid(), Pronoun="Las", ShortName = "Chivas", Name = "Guadalajara", Abbreviation = "Chi", Shield = "http://localhost:7555/QuinielaAPI/API/Resources/Chivas", ShieldWidth=40, ShieldHeight=40, Color = System.Drawing.Color.SteelBlue, Stadium = "Chivas", City = "Zapopan", State = "Jalisco", Country="México" },
                 new Team() { TeamId = Guid.NewGuid(), Pronoun="La", ShortName = "Máquina", Name = "Cruz Azul", Abbreviation = "Caz", Shield = "http://localhost:7555/QuinielaAPI/API/Resources/CruzAzul", ShieldWidth=40, ShieldHeight=40, Color = System.Drawing.Color.Blue, Stadium = "Azul", City = "Ciudad de México", State = "Ciudad de México", Country="México" },
                 new Team() { TeamId = Guid.NewGuid(), Pronoun="Los", ShortName = "Jaguares", Name = "Chiapas", Abbreviation = "Chis", Shield = "http://localhost:7555/QuinielaAPI/API/Resources/Jaguares", ShieldWidth=40, ShieldHeight=40, Color = System.Drawing.Color.SpringGreen, Stadium = "Víctor Manuel Reyna", City = "Tuxtla Gutiérrez", State = "Chiapas", Country="México" },
+                new Team() { TeamId = Guid.NewGuid(), Pronoun="Los", ShortName = "Lobos", Name = "Lobos BUAP", Abbreviation = "BUAP", Shield = "http://localhost:7555/QuinielaAPI/API/Resources/Lobos", ShieldWidth=40, ShieldHeight=40, Color = System.Drawing.Color.Black, Stadium = "Olímpico de la BUAP", City = "Puebla", State = "Puebla", Country="México" },
                 new Team() { TeamId = Guid.NewGuid(), Pronoun="Los", ShortName = "Esmeraldas", Name = "León", Abbreviation = "Leo", Shield = "http://localhost:7555/QuinielaAPI/API/Resources/Leon", ShieldWidth=40, ShieldHeight=40, Color = System.Drawing.Color.Green, Stadium = "Nou Camp", City = "León", State = "Guanajuato", Country="México" },
                 new Team() { TeamId = Guid.NewGuid(), Pronoun="Los", ShortName = "Monarcas", Name = "Morelia", Abbreviation = "Mor", Shield = "http://localhost:7555/QuinielaAPI/API/Resources/Monarcas", ShieldWidth=40, ShieldHeight=40, Color = System.Drawing.Color.Yellow, Stadium = "Morelos", City = "Morelia", State = "Michoacán", Country="México" },
                 new Team() { TeamId = Guid.NewGuid(), Pronoun="Los", ShortName = "Rayados", Name = "Monterrey", Abbreviation = "Mty", Shield = "http://localhost:7555/QuinielaAPI/API/Resources/Monterrey", ShieldWidth=40, ShieldHeight=40, Color = System.Drawing.Color.DarkBlue, Stadium = "BBVA", City = "Monterrey", State = "Nuevo León", Country="México" },
@@ -35,52 +38,74 @@ namespace QuinielaMVC4.Models
             };
             context.Teams.AddRange(teams);
 
-            var season = new Season
+            var seasons = new List<Season>
             {
-                SeasonId = Guid.NewGuid(),
-                Name = "Clausura 2017",
-                LeagueId = league.LeagueId,
-                League = league,
-                Teams = teams,
-                Year = DateTime.Now.Year,
-                Starts = "01/01/2017",
-                Ends = "15/16/2017",
-                Weeks = 20
+                new Season() { SeasonId = Guid.NewGuid(), Name = "Clausura 2017", LeagueId = league.LeagueId, League = league, Year = DateTime.Now.Year, Starts = "01/01/2017", Ends = "15/07/2017", Weeks = 20 },
+                new Season() { SeasonId = Guid.NewGuid(), Name = "Apertura 2017", LeagueId = league.LeagueId, League = league, Year = DateTime.Now.Year, Starts = "01/08/2017", Ends = "15/12/2017", Weeks = 20 }
             };
-            context.Seasons.Add(season);
+            context.Seasons.AddRange(seasons);
 
             long id = 0;
-            foreach (var team in teams)
+            foreach (var season in seasons)
             {
-                SeasonTeams st = new SeasonTeams();
-                st.Id = id;
-                st.SeasonId = season.SeasonId;
-                st.TeamId = team.TeamId;
-                context.SeasonTeams.Add(st);
+                switch (season.Name)
+                {
+                    case "Apertura 2017":
+                        foreach (var team in teams)
+                        {
+                            if (team.ShortName != "Jaguares")
+                            {
+                                SeasonTeams st = new SeasonTeams();
+                                st.Id = id;
+                                st.SeasonId = season.SeasonId;
+                                st.TeamId = team.TeamId;
+                                context.SeasonTeams.Add(st);
+                            }
+                        }
+                        break;
+                    case "Clausura 2017":
+                        foreach (var team in teams)
+                        {
+                            if (team.ShortName != "Lobos")
+                            {
+                                SeasonTeams st = new SeasonTeams();
+                                st.Id = id;
+                                st.SeasonId = season.SeasonId;
+                                st.TeamId = team.TeamId;
+                                context.SeasonTeams.Add(st);
+                            }
+                        }
+                        break;
+                }
+                
             }
 
-            new List<Week> { 
-                new Week{ WeekId = Guid.NewGuid(), Number = 1, Name = "Jornada 1", SeasonId = season.SeasonId, Season = season, Games = null },
-                new Week{ WeekId = Guid.NewGuid(), Number = 2, Name = "Jornada 2", SeasonId = season.SeasonId, Season = season, Games = null },
-                new Week{ WeekId = Guid.NewGuid(), Number = 3, Name = "Jornada 3", SeasonId = season.SeasonId, Season = season, Games = null },
-                new Week{ WeekId = Guid.NewGuid(), Number = 4, Name = "Jornada 4", SeasonId = season.SeasonId, Season = season, Games = null },
-                new Week{ WeekId = Guid.NewGuid(), Number = 5, Name = "Jornada 5", SeasonId = season.SeasonId, Season = season, Games = null },
-                new Week{ WeekId = Guid.NewGuid(), Number = 6, Name = "Jornada 6", SeasonId = season.SeasonId, Season = season, Games = null },
-                new Week{ WeekId = Guid.NewGuid(), Number = 7, Name = "Jornada 7", SeasonId = season.SeasonId, Season = season, Games = null },
-                new Week{ WeekId = Guid.NewGuid(), Number = 8, Name = "Jornada 8", SeasonId = season.SeasonId, Season = season, Games = null },
-                new Week{ WeekId = Guid.NewGuid(), Number = 9, Name = "Jornada 9", SeasonId = season.SeasonId, Season = season, Games = null },
-                new Week{ WeekId = Guid.NewGuid(), Number = 10, Name = "Jornada 10", SeasonId = season.SeasonId, Season = season, Games = null },
-                new Week{ WeekId = Guid.NewGuid(), Number = 11, Name = "Jornada 11", SeasonId = season.SeasonId, Season = season, Games = null },
-                new Week{ WeekId = Guid.NewGuid(), Number = 12, Name = "Jornada 12", SeasonId = season.SeasonId, Season = season, Games = null },
-                new Week{ WeekId = Guid.NewGuid(), Number = 13, Name = "Jornada 13", SeasonId = season.SeasonId, Season = season, Games = null },
-                new Week{ WeekId = Guid.NewGuid(), Number = 14, Name = "Jornada 14", SeasonId = season.SeasonId, Season = season, Games = null },
-                new Week{ WeekId = Guid.NewGuid(), Number = 15, Name = "Jornada 15", SeasonId = season.SeasonId, Season = season, Games = null },
-                new Week{ WeekId = Guid.NewGuid(), Number = 16, Name = "Jornada 16", SeasonId = season.SeasonId, Season = season, Games = null },
-                new Week{ WeekId = Guid.NewGuid(), Number = 17, Name = "Jornada 17", SeasonId = season.SeasonId, Season = season, Games = null },
-                new Week{ WeekId = Guid.NewGuid(), Number = 18, Name = "Cuartos de Final", SeasonId = season.SeasonId, Season = season, Games = null },
-                new Week{ WeekId = Guid.NewGuid(), Number = 19, Name = "Semifinal", SeasonId = season.SeasonId, Season = season, Games = null },
-                new Week{ WeekId = Guid.NewGuid(), Number = 20, Name = "Final", SeasonId = season.SeasonId, Season = season, Games = null },
-            }.ForEach(a => context.Weeks.Add(a));
+            foreach (var season in seasons)
+            {
+                new List<Week> {
+                    new Week{ WeekId = Guid.NewGuid(), Number = 1, Name = "Jornada 1", SeasonId = season.SeasonId, Season = season, Games = null },
+                    new Week{ WeekId = Guid.NewGuid(), Number = 2, Name = "Jornada 2", SeasonId = season.SeasonId, Season = season, Games = null },
+                    new Week{ WeekId = Guid.NewGuid(), Number = 3, Name = "Jornada 3", SeasonId = season.SeasonId, Season = season, Games = null },
+                    new Week{ WeekId = Guid.NewGuid(), Number = 4, Name = "Jornada 4", SeasonId = season.SeasonId, Season = season, Games = null },
+                    new Week{ WeekId = Guid.NewGuid(), Number = 5, Name = "Jornada 5", SeasonId = season.SeasonId, Season = season, Games = null },
+                    new Week{ WeekId = Guid.NewGuid(), Number = 6, Name = "Jornada 6", SeasonId = season.SeasonId, Season = season, Games = null },
+                    new Week{ WeekId = Guid.NewGuid(), Number = 7, Name = "Jornada 7", SeasonId = season.SeasonId, Season = season, Games = null },
+                    new Week{ WeekId = Guid.NewGuid(), Number = 8, Name = "Jornada 8", SeasonId = season.SeasonId, Season = season, Games = null },
+                    new Week{ WeekId = Guid.NewGuid(), Number = 9, Name = "Jornada 9", SeasonId = season.SeasonId, Season = season, Games = null },
+                    new Week{ WeekId = Guid.NewGuid(), Number = 10, Name = "Jornada 10", SeasonId = season.SeasonId, Season = season, Games = null },
+                    new Week{ WeekId = Guid.NewGuid(), Number = 11, Name = "Jornada 11", SeasonId = season.SeasonId, Season = season, Games = null },
+                    new Week{ WeekId = Guid.NewGuid(), Number = 12, Name = "Jornada 12", SeasonId = season.SeasonId, Season = season, Games = null },
+                    new Week{ WeekId = Guid.NewGuid(), Number = 13, Name = "Jornada 13", SeasonId = season.SeasonId, Season = season, Games = null },
+                    new Week{ WeekId = Guid.NewGuid(), Number = 14, Name = "Jornada 14", SeasonId = season.SeasonId, Season = season, Games = null },
+                    new Week{ WeekId = Guid.NewGuid(), Number = 15, Name = "Jornada 15", SeasonId = season.SeasonId, Season = season, Games = null },
+                    new Week{ WeekId = Guid.NewGuid(), Number = 16, Name = "Jornada 16", SeasonId = season.SeasonId, Season = season, Games = null },
+                    new Week{ WeekId = Guid.NewGuid(), Number = 17, Name = "Jornada 17", SeasonId = season.SeasonId, Season = season, Games = null },
+                    new Week{ WeekId = Guid.NewGuid(), Number = 18, Name = "Cuartos de Final", SeasonId = season.SeasonId, Season = season, Games = null },
+                    new Week{ WeekId = Guid.NewGuid(), Number = 19, Name = "Semifinal", SeasonId = season.SeasonId, Season = season, Games = null },
+                    new Week{ WeekId = Guid.NewGuid(), Number = 20, Name = "Final", SeasonId = season.SeasonId, Season = season, Games = null },
+                }.ForEach(a => context.Weeks.Add(a));
+            }
+            
         }
     }
 }
