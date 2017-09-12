@@ -13,14 +13,14 @@ namespace QuinielaMVC4.Parsers
             Team local = JsonConvert.DeserializeObject<Team>(game.Local);
             Team visitor = JsonConvert.DeserializeObject<Team>(game.Visitor);
             Score score = JsonConvert.DeserializeObject<Score>(game.Score);
-            Result result = JsonConvert.DeserializeObject<Result>(game.Result);
+            Result result = (Result)game.Result;
 
             WeekGamesVM weekGame = new WeekGamesVM();
             weekGame.Local = local.Name;
             weekGame.Visitor = visitor.Name;
             weekGame.Date = game.Date;
-            weekGame.LocalScore = score.Local;
-            weekGame.VisitorScore = score.Visitor;
+            weekGame.LocalScore = score != null ? score.Local : 0;
+            weekGame.VisitorScore = score != null ? score.Visitor : 0;
             weekGame.Result = result.ToString();
 
             return weekGame;

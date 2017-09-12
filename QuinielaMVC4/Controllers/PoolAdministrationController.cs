@@ -1,4 +1,5 @@
-﻿using QuinielaMVC4.Models;
+﻿using Newtonsoft.Json;
+using QuinielaMVC4.Models;
 using QuinielaMVC4.Models.Entities;
 using QuinielaMVC4.Parsers;
 using QuinielaMVC4.ViewModels;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using static QuinielaLibrary.Catalogs.Enumerations;
 
 namespace QuinielaMVC4.Controllers
 {
@@ -360,20 +362,57 @@ namespace QuinielaMVC4.Controllers
 
         public ActionResult GameCreate(Guid weekId, Guid seasonId)
         {
-            ViewBag.WeekId = weekId;
+            ViewData["weekId"] = weekId;
             ViewBag.SeasonId = seasonId;
 
             //Obtener los ids de los equipos registrados en la temporada para llenar el combo de locales y visitantes para dar de alta el partido
             var seasonTeams = db.SeasonTeams.Where(st => st.SeasonId == seasonId).ToList();
+            //var weekGames = db.Database.SqlQuery<Guid>("SELECT GameId FROM dbo.WeekGames WHERE WeekId = @p0", weekId).ToList();
+            List<Guid> teamsIds = new List<Guid>();
+            teamsIds.AddRange(db.Database.SqlQuery<Guid>("SELECT TeamId FROM dbo.Teams WHERE TeamId IN (SELECT LocalId FROM dbo.Games WHERE GameId IN (SELECT GameId FROM dbo.WeekGames WHERE WeekId = @p0))", weekId).ToList());
+            teamsIds.AddRange(db.Database.SqlQuery<Guid>("SELECT TeamId FROM dbo.Teams WHERE TeamId IN (SELECT VisitorId FROM dbo.Games WHERE GameId IN (SELECT GameId FROM dbo.WeekGames WHERE WeekId = @p0))", weekId).ToList());
             List<Team> teams = new List<Team>();
-            foreach (var item in seasonTeams)
+
+            foreach (var item in seasonTeams.Where(i => !teamsIds.Contains(i.TeamId)))
             {
                 teams.Add(db.Teams.Find(item.TeamId));
             }
             //Parsear teams a selectlistitems
+            ViewBag.LocalId = teams.Select(t => new SelectListItem { Text = t.Name, Value = t.TeamId.ToString() }).ToList<SelectListItem>();
+            ViewBag.VisitorId = teams.Select(t => new SelectListItem { Text = t.Name, Value = t.TeamId.ToString() }).ToList<SelectListItem>();
             return View();
         }
 
+        [HttpPost]
+        public ActionResult GameCreate()
+        {            
+            Game game = new Game();
+
+            try
+            {
+                if (TryUpdateModel(game, new[] { "LocalId", "VisitorId", "Date" }) && ModelState.IsValid)
+                {
+                    game.GameId = Guid.NewGuid();
+                    game.Result = (int)Result.NA;
+                    game.Score = string.Empty;
+                    game.Local = JsonConvert.SerializeObject(db.Teams.Find(game.LocalId));
+                    game.Visitor = JsonConvert.SerializeObject(db.Teams.Find(game.VisitorId));
+
+                    db.WeekGames.Add(new WeekGames { GameId = game.GameId, WeekId = Guid.Parse(Request["weekId"]) });
+                    db.Games.Add(game);
+                    db.SaveChanges();
+
+                    return Json(new { data = new { MessageType = 1, Message = "Se creó el partido" } }, JsonRequestBehavior.AllowGet);
+                }
+                ViewData["weekId"] = Request["weekId"];
+                return View(game);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { data = new { MessageType = 3, Message = "Algo salió mal: " + ex.Message } }, JsonRequestBehavior.AllowGet);
+            }
+            
+        }
         #endregion
 
     }

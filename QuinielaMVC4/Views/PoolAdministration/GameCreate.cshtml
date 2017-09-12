@@ -5,6 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script src="~/Scripts/moment-with-locales.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+
 <div class="page-header">
     <div class="container">
         <h2>Nuevo partido</h2>
@@ -13,44 +17,46 @@
                 @using (Html.BeginForm("GameCreate", "PoolAdministration", FormMethod.Post, new { @class = "form-horizontal" }))
                 {
                     @Html.AntiForgeryToken()
-                    @Html.HiddenFor(model => model.LocalId)
-                    @Html.HiddenFor(model => model.VisitorId)
+                    @Html.Hidden("WeekId", ViewData["weekId"])
+                    
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
                         @Html.LabelFor(model => model.Local, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Local, new { htmlAttributes = new { @class = "form-control input-sm" } })
-                            @Html.ValidationMessageFor(model => model.Local, "", new { @class = "text-danger" })
+                            @Html.DropDownList("LocalId", null, new { @name = "LocalId", @class = "form-control input-sm" })
                         </div>
                     </div>
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.Visitor, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Visitor, new { htmlAttributes = new { @class = "form-control input-sm" } })
-                            @Html.ValidationMessageFor(model => model.Visitor, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Score, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Score, new { htmlAttributes = new { @class = "form-control input-sm" } })
-                            @Html.ValidationMessageFor(model => model.Score, "", new { @class = "text-danger" })
+                            @Html.DropDownList("VisitorId", null, new { @name = "VisitorId", @class = "form-control input-sm" })
                         </div>
                     </div>
 
                     <div class="form-group">
                         @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control input-sm" } })
-                            @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                                        <div class='input-group date' id='dtpDate'>
+                                            @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control input-sm", @type = "text" } })
+                                            <span class="input-group-addon input-sm">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                        @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                                <script type="text/javascript">
+                                $(function () {
+                                    $('#dtpDate').datetimepicker({
+                                        locale: 'es'
+                                    });
+                                });
+                                </script>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10 text-right">
-                            <input type="submit" value="Create" class="btn btn-default btn-sm" />
+                            <a class="btn btn-default btn-sm" id="Save">Guardar</a>
                         </div>
                     </div>
                 }
@@ -58,3 +64,5 @@
         </div>
     </div>
 </div>
+
+<script src="~/Scripts/QuinielaMVC4.validations.team.js"></script>

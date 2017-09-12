@@ -14,10 +14,13 @@ namespace QuinielaMVC4.Models.Entities
         [ScaffoldColumn(false)]
         public System.Guid VisitorId { get; set; }
 
+        [Display(Name = "Local")]
         public string Local { get; set; }
 
+        [Display(Name = "Visitante")]
         public string Visitor { get;  set; }
 
+        [Display(Name = "Marcador")]
         public string Score { get; set; }
 
         [Required(ErrorMessage = "Debes elegir la fecha del partido")]
@@ -25,7 +28,8 @@ namespace QuinielaMVC4.Models.Entities
         [DataType(DataType.Date)]
         public string Date { get; set; }
 
+
         [ScaffoldColumn(false)]
-        public string Result { get; set; }
+        public int Result { get; set; }
     }
 }

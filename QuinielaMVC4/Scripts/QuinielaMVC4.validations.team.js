@@ -93,5 +93,22 @@ function OnCompleteTeam(data) {
     dialog.open();
 }
 function OnSuccessTeam() {
-    window.location.href='/PoolAdministration/TeamList'
+    window.location.reload();
 }
+
+$('#Save').click(function () {
+    $.ajax({
+        url: '/PoolAdministration/GameCreate',
+        data: {
+            LocalId: document.getElementById("LocalId").value,
+            VisitorId: document.getElementById("VisitorId").value,
+            Date: document.getElementById("Date").value,
+            weekId: document.getElementById("WeekId").value
+        },
+        type: 'POST'
+    }).done(function (result) {
+        OnCompleteTeam(result);
+    }).fail(function (result) {
+        onError(result);
+    });
+});
